@@ -1,0 +1,33 @@
+.addForm {
+    min-width: 250px;
+    padding: 10px;
+    background-color: rgb(222, 226, 229);
+    border-radius: 5px;
+    max-height: 120px;
+}
+
+.addForm__buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.addForm__buttons-add{
+    flex: 0 0 110px;
+    background-color: rgb(92, 168, 77);
+    color: white;
+    font-weight: 600;
+    text-align: center;
+    padding: 10px 10px 10px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.addForm textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    color: rgb(30, 60, 77);
+}

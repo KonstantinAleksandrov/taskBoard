@@ -1,0 +1,26 @@
+.column {
+    min-width: 250px;
+    background-color: rgb(222, 226, 229);
+    border-radius: 5px;
+    padding-top: 5px;
+}
+
+.column__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0  10px 10px 10px;
+}
+
+.column__header-title {
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.column__footer .add {
+    border-radius: 0 0 5px 5px;
+    overflow: hidden;
+}
+.column__taskList {
+    padding: 0 10px;
+}
