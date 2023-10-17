@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`проверяем наличие кнопки для добавления новой колонки на странице 1`] = `
+<div
+  class="add"
+  title="addButton"
+>
+  <div
+    class="addTitle"
+  >
+    + Add new column
+  </div>
+</div>
+`;

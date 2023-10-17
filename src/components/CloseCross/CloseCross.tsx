@@ -9,6 +9,7 @@ interface ICloseCrossProps {
 const CloseCross: FC<ICloseCrossProps> = ({id,handler}) => {
     return (
         <div 
+        data-testid='close-cross'
         className="closeCross" 
         onClick={()=> handler(id) }>
             <span></span>

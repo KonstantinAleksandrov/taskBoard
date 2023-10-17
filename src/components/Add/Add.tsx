@@ -20,7 +20,7 @@ const Add: FC<IAddProps> = observer(({options}) => {
 const { toggleFormColumn, toggleFormTask, openedColumnForm, openedTaskForm, changeTitle,title} = options.addStore
 
     return (
-        <div className="add">
+        <div className="add" title='addButton'>
             {options.addType === 'column' 
             ? openedColumnForm
                 ? <AddForm options={

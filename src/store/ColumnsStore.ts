@@ -18,17 +18,22 @@ class ColumnsStore {
             {
                 title: columnName,
                 id: this.currentId,
-                tasksStore: new TasksStore()
+                tasksStore: new TasksStore(this.currentId)
             }
         )
 
         this.currentId++
+        console.log(this.columns)
     }
 
     removeColumn = (id: number) => {
         this.columns = this.columns.filter((column)=> column.id !== id)
     }
 
+}
+
+export const createColumnsStore = () => {
+    return new ColumnsStore()
 }
 
 

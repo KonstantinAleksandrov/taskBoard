@@ -12,7 +12,7 @@ interface IAddTitleProps {
 
 const AddTitle: FC<IAddTitleProps> = ({options}) => {
     return (
-        <div className="addTitle" onClick={options.toggleHandler}>
+        <div className="addTitle" onClick={options.toggleHandler} data-testid = 'openFormButton'>
             {options.title}
         </div>
     )

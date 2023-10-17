@@ -19,15 +19,26 @@ export interface ITask{
     id: number,
 }
 
+export interface IExtendedTask extends ITask {
+    index: number
+}
+
 export interface ITasksStore {
     tasks: ITask[]
     currentId: number
+    columnId: number
     addTask: (taskName: string) => void
     removeTask: (id: number) => void
+    moveTasksWithinColumn: (dragIndex: number  , hoverIndex: number) => void,
+    insertTaskAnywhere: (index: number,title: string ) => void
 }
 
 export interface IColumn {
     title: string,
     id: number,
     tasksStore: ITasksStore
+}
+
+export interface IDragingState extends IExtendedTask , ITasksStore{
+    
 }

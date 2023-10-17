@@ -1,22 +1,7 @@
 import './style.css'
 import { FC } from 'react'
 import CloseCross from '../CloseCross/CloseCross'
-import { addtype } from '../../types'
-
-interface IAddFormTextarea {
-    value: string,
-    handler: (title: string,type: 'column' | 'task') => void
-}
-
-interface IAddForm{
-    placeholder: string,
-    buttonName: string,
-    toggleHandler: () => void,
-    textareaData: IAddFormTextarea,
-    addType: addtype,
-    addColumn?: (columnName: string) => void,
-    addTask?: (taskName: string) => void
-}
+import { IAddForm } from './types'
 
 interface IAddFormProps {
     options: IAddForm
@@ -26,8 +11,9 @@ const AddForm: FC<IAddFormProps> = ({options}) => {
     const { buttonName, toggleHandler, placeholder, textareaData, addType, addColumn, addTask } = options
 
     return (
-        <div className='addForm'>
+        <div className='addForm' data-testid = 'add-form'>
             <textarea 
+            data-testid='add-texarea'
             maxLength={25}
             placeholder={placeholder} 
             value={textareaData.value}
@@ -36,6 +22,7 @@ const AddForm: FC<IAddFormProps> = ({options}) => {
             <div className='addForm__buttons'>
                 <div 
                 className='addForm__buttons-add' 
+                data-testid='add-button'
                 onClick={()=>{
                     if (addColumn && textareaData.value) {
                         addColumn(textareaData.value)
