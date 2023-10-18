@@ -1,7 +1,10 @@
 import './style.css'
 import { FC } from 'react'
 import CloseCross from '../CloseCross/CloseCross'
-import { IAddForm } from './types'
+import { IAddForm } from '../../types'
+import { createTasksStore } from '../../store/TasksStore'
+import columnsStore from '../../store/ColumnsStore'
+import { getDate } from '../../utils/dateUtils'
 
 interface IAddFormProps {
     options: IAddForm
@@ -14,7 +17,6 @@ const AddForm: FC<IAddFormProps> = ({options}) => {
         <div className='addForm' data-testid = 'add-form'>
             <textarea 
             data-testid='add-texarea'
-            maxLength={25}
             placeholder={placeholder} 
             value={textareaData.value}
             onChange={(e) => { textareaData.handler(e.target.value,addType) }}
@@ -25,15 +27,17 @@ const AddForm: FC<IAddFormProps> = ({options}) => {
                 data-testid='add-button'
                 onClick={()=>{
                     if (addColumn && textareaData.value) {
-                        addColumn(textareaData.value)
+                        addColumn(textareaData.value, createTasksStore(columnsStore.currentId))
                         textareaData.handler('',addType) 
                         toggleHandler()
+                        columnsStore.saveColumnsInLocalStorage()
                     }
 
                     if (addTask && textareaData.value) {
-                        addTask(textareaData.value)
+                        addTask(textareaData.value,getDate())
                         textareaData.handler('',addType) 
                         toggleHandler()
+                        columnsStore.saveColumnsInLocalStorage()
                     }
                 }}>{buttonName}</div>
                 <CloseCross handler={toggleHandler}/>

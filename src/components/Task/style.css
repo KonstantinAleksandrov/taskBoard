@@ -2,9 +2,6 @@
     width: 100%;
     padding: 5px 10px;
     color: rgb(30, 60, 77);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
     background-color: white;
     border-radius: 5px;
     gap: 15px;
@@ -13,6 +10,19 @@
     text-transform: capitalize;
 }
 
-.task.dragging {
-    opacity: 0.5;
+.task__header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.task .dragging {
+    pointer-events: none;
+}
+
+.task__footer-date {
+    font-size: 12px;
+    color: gray;
 }

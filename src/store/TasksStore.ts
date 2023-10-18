@@ -1,5 +1,5 @@
 import { makeAutoObservable } from "mobx"
-import { ITask,ITasksStore, IDragingState } from '../types'
+import { ITask,ITasksStore, IExtendedTask } from '../types'
 
 class TasksStore implements ITasksStore {
     public tasks: ITask[]
@@ -12,13 +12,15 @@ class TasksStore implements ITasksStore {
         makeAutoObservable(this)
     }
 
-    addTask = (taskName: string) => {
+    addTask = (taskName: string,date: string) => {
         this.tasks.push(
             {
                 title: taskName,
-                id: this.currentId
+                id: this.currentId,
+                dateCreate: date
             }
         )
+
 
         this.currentId++
     }
@@ -36,14 +38,18 @@ class TasksStore implements ITasksStore {
         this.tasks = updatedTasks
     }
 
-    insertTaskAnywhere = (index: number,title: string ) => {
-        const currentColumns = [...this.tasks.slice(0,index)]
-        const currentTask = {title: title, id: this.currentId }
+    insertTaskAnywhere = (task: IExtendedTask ,title: string ) => {
+        const currentColumns = [...this.tasks.slice(0,task.index)]
+        const currentTask = {title: title, id: this.currentId,dateCreate: task.dateCreate }
         currentColumns.push(currentTask)
-        this.tasks = [...currentColumns,...this.tasks.slice(index)]
+        this.tasks = [...currentColumns,...this.tasks.slice(task.index)]
         this.currentId++
     }
     
 }
+
+export const createTasksStore = (id: number): ITasksStore => {
+    return new TasksStore(id)
+} 
 
 export default TasksStore

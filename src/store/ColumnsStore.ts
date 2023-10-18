@@ -1,6 +1,6 @@
 import { makeAutoObservable } from "mobx";
-import { IColumn } from "../types";
-import TasksStore from "./TasksStore";
+import { IColumn,ITasksStore } from "../types";
+import { createTasksStore } from "./TasksStore";
 
 
 
@@ -13,23 +13,43 @@ class ColumnsStore {
         makeAutoObservable(this)
     }
 
-    addColumn = (columnName: string) => {
+    addColumn = (columnName: string, store: ITasksStore ) => {
         this.columns.push(
             {
                 title: columnName,
                 id: this.currentId,
-                tasksStore: new TasksStore(this.currentId)
+                tasksStore: store
             }
         )
-
+            
         this.currentId++
-        console.log(this.columns)
     }
 
     removeColumn = (id: number) => {
         this.columns = this.columns.filter((column)=> column.id !== id)
     }
 
+    saveColumnsInLocalStorage = () => {
+        window.localStorage.setItem('columnsList',JSON.stringify(this.columns))
+    }
+
+    getColumnsOutLocalStorage = () => {
+        let columnsData = window.localStorage.getItem('columnsList')
+        if (columnsData) {
+            const columnsList = JSON.parse(columnsData) as IColumn[]
+
+            columnsList.forEach((column)=>{
+
+                const tasksStore = createTasksStore(this.currentId)
+
+                column.tasksStore.tasks.forEach((task)=>{
+                    tasksStore.addTask(task.title,task.dateCreate)
+                })
+
+                this.addColumn(column.title,tasksStore)
+            })
+        }
+    }
 }
 
 export const createColumnsStore = () => {

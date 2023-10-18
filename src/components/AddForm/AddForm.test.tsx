@@ -2,7 +2,7 @@ import { render, screen,fireEvent} from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import AddStore from '../../store/addStore'
 import AddForm from './AddForm'
-import { IAddForm } from './types'
+import { IAddForm } from '../../types'
 import { createColumnsStore } from '../../store/ColumnsStore'
 
 

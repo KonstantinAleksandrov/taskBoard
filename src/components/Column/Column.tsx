@@ -15,7 +15,6 @@ interface IColumnProps {
 }
 
 const Column: FC<IColumnProps> = observer( ({options, draging, setdraging}) => {
-   /*  const [draging, setdraging] = useState<IDragingState>({} as IDragingState) */
     const { id, tasksStore, title  } = options
     const { removeColumn } = columnsStore
 
@@ -24,7 +23,13 @@ const Column: FC<IColumnProps> = observer( ({options, draging, setdraging}) => {
 
             <div className='column__header'>
                 <div className='column__header-title' data-testid='column-title'>{title}</div>
-                <CloseCross handler={ () => removeColumn(id) } id={id}/>
+                <CloseCross 
+                handler={() => {
+                    removeColumn(id)
+                    columnsStore.saveColumnsInLocalStorage()
+                }} 
+                id={id}
+                />
             </div>
 
             <div className='column__body'>
