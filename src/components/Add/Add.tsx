@@ -17,7 +17,19 @@ interface IAddProps {
 }
 
 const Add: FC<IAddProps> = observer(({options}) => {
-const { toggleFormColumn, toggleFormTask, openedColumnForm, openedTaskForm, changeTitle,title} = options.addStore
+const { 
+    toggleFormColumn, 
+    toggleFormTask, 
+    openedColumnForm, 
+    openedTaskForm, 
+    changeTitle, 
+    title, 
+    addFile, 
+    clearFileList,
+    changeLoading,
+    isLoading,
+    taskFileList
+} = options.addStore
 
     return (
         <div className="add" title='addButton'>
@@ -33,7 +45,11 @@ const { toggleFormColumn, toggleFormTask, openedColumnForm, openedTaskForm, chan
                             handler: changeTitle
                         },
                         addType: options.addType,
-                        addColumn: columnsStore.addColumn
+                        addColumn: columnsStore.addColumn,
+                        changeLoading,
+                        clearFileList,
+                        isLoading,
+                        taskFileList
                     }
                   }/>
                 : <AddTitle options={
@@ -53,7 +69,17 @@ const { toggleFormColumn, toggleFormTask, openedColumnForm, openedTaskForm, chan
                             handler: changeTitle
                         },
                         addType: options.addType,
-                        addTask: options.tasksStore ? options.tasksStore.addTask : undefined 
+                        addTaskHandlers: options.tasksStore 
+                        ? {
+                            addTask: options.tasksStore.addTask ,
+                            addFile,
+                            clearFileList
+                        }
+                        : undefined,
+                        changeLoading,
+                        clearFileList,
+                        isLoading,
+                        taskFileList
                     }
                   }/>
                 : <AddTitle options={

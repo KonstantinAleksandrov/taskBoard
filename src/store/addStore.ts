@@ -7,14 +7,18 @@ class AddStore implements IAddStore {
     public openedColumnForm: boolean
     public openedTaskForm: boolean
     public title: ITitle
+    public taskFileList: string[]
+    public isLoading: boolean
 
     constructor () {
+        this.isLoading = false
         this.openedColumnForm = false
         this.openedTaskForm = false
         this.title = {
             columnName: '',
             taskName: ''
         }
+        this.taskFileList = []
         makeAutoObservable(this)
     }
 
@@ -33,6 +37,22 @@ class AddStore implements IAddStore {
            this.title.taskName = title 
         }
     }
+
+    addFile = (file: string) => {
+        this.taskFileList.push(file)
+    }
+
+    clearFileList = () => {
+        this.taskFileList = []
+    }
+
+    changeLoading = () => {
+        this.isLoading = !this.isLoading
+    }
+}
+
+export const createAddStore = () => {
+    return new AddStore()
 }
 
 export default AddStore

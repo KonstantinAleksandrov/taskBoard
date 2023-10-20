@@ -32,8 +32,7 @@ export const dragStartHandler = (
         htmlElement: HTMLElement
     ) => {
         setState({...task,...tasksStore, htmlElement})
-        changeClassList('add')
-        
+        changeClassList('add')    
 }
 
 export const dragLeaveHandler = (e: React.DragEvent) => {
@@ -111,8 +110,7 @@ export const dragDropHandler = (
             tasksStore.moveTasksWithinColumn(draging.index,task.index)
         }else {
             draging.removeTask(draging.id)
-            tasksStore.insertTaskAnywhere(task, draging.title)
+            tasksStore.insertTaskAnywhere(draging, task.index)
         }
-
         columnsStore.saveColumnsInLocalStorage()
 }  

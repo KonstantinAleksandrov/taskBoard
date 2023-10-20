@@ -3,7 +3,6 @@ import CloseCross from '../CloseCross/CloseCross'
 import { IColumn ,IDragingState} from '../../types'
 import { FC ,Dispatch,SetStateAction} from 'react'
 import columnsStore from '../../store/ColumnsStore'
-import AddStore from '../../store/addStore'
 import Add from '../Add/Add'
 import { observer } from 'mobx-react-lite'
 import Task from '../Task/Task'
@@ -15,7 +14,7 @@ interface IColumnProps {
 }
 
 const Column: FC<IColumnProps> = observer( ({options, draging, setdraging}) => {
-    const { id, tasksStore, title  } = options
+    const { id, tasksStore, title, addStore } = options
     const { removeColumn } = columnsStore
 
     return (
@@ -56,7 +55,7 @@ const Column: FC<IColumnProps> = observer( ({options, draging, setdraging}) => {
                 options={
                     {
                         addType: 'task',
-                        addStore: new AddStore(),
+                        addStore: addStore,
                         tasksStore: tasksStore
                     }
                 }

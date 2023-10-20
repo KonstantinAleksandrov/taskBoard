@@ -5,6 +5,7 @@ import { ITask ,ITasksStore,IDragingState} from '../../types'
 import { Dispatch,SetStateAction } from 'react'
 import { dragStartHandler, dragLeaveHandler,dragEndHandler,dragOverHandler,dragDropHandler } from '../../utils/dndUtils'
 import columnsStore from '../../store/ColumnsStore'
+import appleImg from '../../images/apple.jpg'
 
 
 interface ITaskProps {
@@ -18,7 +19,7 @@ interface ITaskProps {
 const Task: FC<{options: ITaskProps}> = ({options}) => {
 
     const {tasksStore, taskIndex, task, setdraging, draging} = options
-   
+
     return (
         <div 
         className="task" 
@@ -37,6 +38,17 @@ const Task: FC<{options: ITaskProps}> = ({options}) => {
                     columnsStore.saveColumnsInLocalStorage()
                 }}
                  id={task.id}/>
+            </div>
+            <div className='task__body'>
+                <div className='task__body-images task__images'>
+                    {task.taskFileList.map((image,index)=>{
+                        return (
+                            <div className='task__images-img' key={index}>
+                                 <img src={image} alt="img" draggable={false}/>
+                            </div>
+                        )
+                    })}
+                </div>
             </div>
             <div className='task__footer'>
                 <div className='task__footer-date'>{task.dateCreate}</div>

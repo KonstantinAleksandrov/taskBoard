@@ -16,7 +16,11 @@ describe('проверка работы формы добавления',()=>{
             buttonName: 'test buttonName',
             toggleHandler: addStore.toggleFormColumn,
             textareaData: {value: '', handler: addStore.changeTitle },
-            addType: 'column'
+            addType: 'column',
+            changeLoading: addStore.changeLoading,
+            isLoading: false,
+            clearFileList: addStore.clearFileList,
+            taskFileList: addStore.taskFileList
         }
 
         render(<AddForm options={mockProps}/>)
@@ -31,7 +35,11 @@ describe('проверка работы формы добавления',()=>{
             buttonName: 'test buttonName',
             toggleHandler: addStore.toggleFormColumn,
             textareaData: {value: '', handler: addStore.changeTitle },
-            addType: 'column'
+            addType: 'column',
+            changeLoading: addStore.changeLoading,
+            isLoading: false,
+            clearFileList: addStore.clearFileList,
+            taskFileList: addStore.taskFileList
         }
 
         render(<AddForm options={mockProps}/>)
@@ -46,7 +54,11 @@ describe('проверка работы формы добавления',()=>{
             buttonName: 'test buttonName',
             toggleHandler: addStore.toggleFormColumn,
             textareaData: {value: '', handler: addStore.changeTitle },
-            addType: 'column'
+            addType: 'column',
+            changeLoading: addStore.changeLoading,
+            isLoading: false,
+            clearFileList: addStore.clearFileList,
+            taskFileList: addStore.taskFileList
         }
 
         render(<AddForm options={mockProps}/>)
@@ -66,7 +78,11 @@ describe('проверка работы формы добавления',()=>{
             toggleHandler: addStore.toggleFormColumn,
             textareaData: {value: 'to do', handler: addStore.changeTitle},
             addType: 'column',
-            addColumn: columnsStore.addColumn
+            addColumn: columnsStore.addColumn,
+            changeLoading: addStore.changeLoading,
+            isLoading: false,
+            clearFileList: addStore.clearFileList,
+            taskFileList: addStore.taskFileList
         }
 
         render(<AddForm options={mockProps}/>)

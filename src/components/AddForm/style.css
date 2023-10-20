@@ -3,7 +3,6 @@
     padding: 10px;
     background-color: rgb(222, 226, 229);
     border-radius: 5px;
-    max-height: 120px;
 }
 
 .addForm__buttons {
@@ -22,6 +21,7 @@
     padding: 10px 10px 10px 10px;
     border-radius: 5px;
     cursor: pointer;
+    position: relative;
 }
 
 .addForm textarea {
@@ -30,4 +30,29 @@
     border-radius: 5px;
     margin-bottom: 10px;
     color: rgb(30, 60, 77);
+}
+
+.addForm__buttons-rightColumn {
+    display: flex;
+    align-items: center;
+    padding-right: 30px;
+}
+
+.addForm__fileList {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.addForm__fileList-item {
+    flex: 0 0 40px;
+    height: 40px;
+    overflow: hidden;
+}
+
+.addForm__fileList-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
 }

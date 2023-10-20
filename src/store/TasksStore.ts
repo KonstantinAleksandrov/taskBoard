@@ -12,12 +12,13 @@ class TasksStore implements ITasksStore {
         makeAutoObservable(this)
     }
 
-    addTask = (taskName: string,date: string) => {
+    addTask = (taskName: string,date: string, fileList: string[]) => {
         this.tasks.push(
             {
                 title: taskName,
                 id: this.currentId,
-                dateCreate: date
+                dateCreate: date,
+                taskFileList: [...fileList]
             }
         )
 
@@ -38,11 +39,11 @@ class TasksStore implements ITasksStore {
         this.tasks = updatedTasks
     }
 
-    insertTaskAnywhere = (task: IExtendedTask ,title: string ) => {
-        const currentColumns = [...this.tasks.slice(0,task.index)]
-        const currentTask = {title: title, id: this.currentId,dateCreate: task.dateCreate }
+    insertTaskAnywhere = (task: IExtendedTask ,index: number ) => {
+        const currentColumns = [...this.tasks.slice(0,index)]
+        const currentTask = {title: task.title, id: this.currentId,dateCreate: task.dateCreate,taskFileList: [...task.taskFileList] }
         currentColumns.push(currentTask)
-        this.tasks = [...currentColumns,...this.tasks.slice(task.index)]
+        this.tasks = [...currentColumns,...this.tasks.slice(index)]
         this.currentId++
     }
     
