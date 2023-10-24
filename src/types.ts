@@ -54,31 +54,6 @@ export interface IDragingState extends IExtendedTask , ITasksStore{
     htmlElement: HTMLElement
 }
 
-export interface IAddFormTextarea {
-    value: string,
-    handler: (title: string,type: 'column' | 'task') => void
-}
-
-export interface IAddTaskHandlers {
-    addTask: addTask,
-    addFile: addFile,
-    clearFileList: () => void
-}
-
-export interface IAddForm{
-    placeholder: string,
-    buttonName: string,
-    toggleHandler: () => void,
-    textareaData: IAddFormTextarea,
-    addType: addtype,
-    addColumn?: (columnName: string, tasksStore: ITasksStore, addStore: IAddStore ) => void,
-    addTaskHandlers?: IAddTaskHandlers,
-    changeLoading: () => void,
-    isLoading: boolean,
-    clearFileList: () => void,
-    taskFileList: string[]
-}
-
 export interface IColumnsStore {
     columns: IColumn[],
     currentId: number,

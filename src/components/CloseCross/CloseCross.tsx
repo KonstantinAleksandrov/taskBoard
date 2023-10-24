@@ -1,17 +1,12 @@
 import './style.css'
 import { FC } from 'react'
 
-interface ICloseCrossProps {
-    id?: number
-    handler: (id?: number)=> void
-}
-
-const CloseCross: FC<ICloseCrossProps> = ({id,handler}) => {
+const CloseCross: FC<{closeHandler: () => void}> = ({closeHandler}) => {
     return (
         <div 
         data-testid='close-cross'
         className="closeCross" 
-        onClick={()=> handler(id) }>
+        onClick={closeHandler}>
             <span></span>
             <span></span>
         </div>

@@ -17,6 +17,10 @@
     font-weight: 600;
 }
 
+.column__header .closeCross {
+    margin-right: -8px;
+}
+
 .column__footer .add {
     border-radius: 0 0 5px 5px;
     overflow: hidden;

@@ -18,7 +18,7 @@ class TasksStore implements ITasksStore {
                 title: taskName,
                 id: this.currentId,
                 dateCreate: date,
-                taskFileList: [...fileList]
+                taskFileList: fileList
             }
         )
 
@@ -33,15 +33,15 @@ class TasksStore implements ITasksStore {
     moveTasksWithinColumn = ( dragIndex: number  , hoverIndex: number ) => {
         const dragItem = this.tasks[dragIndex]
         const hoverItem = this.tasks[hoverIndex]
-        const updatedTasks = [...this.tasks]
+        const updatedTasks = this.tasks
         updatedTasks[dragIndex] = hoverItem
         updatedTasks[hoverIndex] = dragItem
         this.tasks = updatedTasks
     }
 
     insertTaskAnywhere = (task: IExtendedTask ,index: number ) => {
-        const currentColumns = [...this.tasks.slice(0,index)]
-        const currentTask = {title: task.title, id: this.currentId,dateCreate: task.dateCreate,taskFileList: [...task.taskFileList] }
+        const currentColumns = this.tasks.slice(0,index)
+        const currentTask = {title: task.title, id: this.currentId,dateCreate: task.dateCreate,taskFileList: task.taskFileList }
         currentColumns.push(currentTask)
         this.tasks = [...currentColumns,...this.tasks.slice(index)]
         this.currentId++

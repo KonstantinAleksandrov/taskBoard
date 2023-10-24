@@ -1,4 +1,4 @@
-.addTitle {
+.formOpener {
     min-width: 250px;
     cursor: pointer;
     padding: 10px;
@@ -6,7 +6,7 @@
     max-height: 35px;
 }
 
-.addTitle:hover {
+.formOpener:hover {
     background-color: rgb(121, 140, 151);
     color: rgb(30, 60, 77);
 }

@@ -1,22 +1,13 @@
-import Add from './components/Add/Add';
 import Table from './components/Table/Table';
 import AddStore from './store/addStore';
-import storeFactory from './store/storeFactory';
+import ColumnCreator from './components/ColumnCreator';
 
 const App = () => {
-  storeFactory.createColumnsStore()
   return (
     <div className="App">
       <div className='wrapper'>
         <Table/>
-        <Add 
-        options={
-          {
-            addType: 'column',
-            addStore: new AddStore()
-          }
-        }
-        />
+        <ColumnCreator  addStore={new AddStore()}/>
       </div>
     </div>
   );

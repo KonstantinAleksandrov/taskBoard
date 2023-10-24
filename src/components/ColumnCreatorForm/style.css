@@ -1,0 +1,13 @@
+.columnCreatorForm {
+    min-width: 250px;
+    padding: 10px;
+    background-color: rgb(222, 226, 229);
+    border-radius: 5px;
+}
+
+.columnCreatorForm__buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+    align-items: center;
+}
