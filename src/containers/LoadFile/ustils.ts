@@ -1,5 +1,7 @@
 import { clearFileList, changeLoading,tempStorageSave} from './types'
 
+
+//ждем загрузки картинки и сохраняем во временное хранилище
 export const inputHandler = (e: React.ChangeEvent, clearFileList: clearFileList, changeLoading: changeLoading, tempStorageSave: tempStorageSave) =>  {
     clearFileList()
     const input = e.target as HTMLInputElement

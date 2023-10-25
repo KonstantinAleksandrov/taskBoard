@@ -1,9 +1,9 @@
 import { makeAutoObservable } from "mobx";
-import { IAddStore, ITitle } from "../types";
+import { ICreatorStore, ITitle } from "../types/creatorTypes";
 
 
 
-class AddStore implements IAddStore {
+class CreatorStore implements ICreatorStore {
     public openedColumnForm: boolean
     public openedTaskForm: boolean
     public title: ITitle
@@ -51,8 +51,8 @@ class AddStore implements IAddStore {
     }
 }
 
-export const createAddStore = () => {
-    return new AddStore()
+export const createCreatorStore = () => {
+    return new CreatorStore()
 }
 
-export default AddStore
+export default CreatorStore

@@ -1,5 +1,5 @@
 import './style.css'
-import CloseCross from '../CloseCross/CloseCross'
+import CloseCross from '../../components/CloseCross/CloseCross'
 import { FC } from 'react'
 import columnsStore from '../../store/ColumnsStore'
 import TaskCreator from '../TaskCreator/index.'
@@ -9,7 +9,7 @@ import { IColumnProps } from './types'
 
 
 const Column: FC<IColumnProps> = ({options, draging, setdraging}) => {
-    const { id, tasksStore, title, addStore } = options
+    const { id, tasksStore, title, creatorStore } = options
     const { removeColumn } = columnsStore
 
     return (
@@ -45,7 +45,7 @@ const Column: FC<IColumnProps> = ({options, draging, setdraging}) => {
             </div>
 
             <div className='column__footer'>
-                <TaskCreator addStore={addStore} tasksStore={tasksStore}/>
+                <TaskCreator creatorStore={creatorStore} tasksStore={tasksStore}/>
             </div>
 
         </div>

@@ -1,9 +1,10 @@
-import { IAddStore,IColumnsStore,ITasksStore } from "../types"
-import {action ,makeAutoObservable } from "mobx";
-import AddStore from "./addStore";
+import { IColumnsStore } from "../types/columnTypes"
+import { ITasksStore } from "../types/taskTypes"
+import { ICreatorStore } from "../types/creatorTypes"
+import CreatorStore from "./CreatorStore";
 import TasksStore from "./TasksStore";
 
-interface IStoreArrayItem<T> {
+export interface IStoreArrayItem<T> {
     store: T,
     id: number
 }
@@ -11,19 +12,18 @@ interface IStoreArrayItem<T> {
 class StoreFactory {
     private columnsStoresArray: IStoreArrayItem<IColumnsStore>[]
     private tasksStoreArray: IStoreArrayItem<ITasksStore>[]
-    private addStoreArray: IStoreArrayItem<IAddStore>[]
-    public addStoreId: number
+    private creatorStoreArray: IStoreArrayItem<ICreatorStore>[]
+    public creatorStoreId: number
     public columnsStoreId: number
     public tasksStoreId: number
 
     constructor () {
         this.columnsStoresArray = []
         this.tasksStoreArray = []
-        this.addStoreArray = []
-        this.addStoreId = 0
+        this.creatorStoreArray = []
+        this.creatorStoreId = 0
         this.columnsStoreId = 0
         this.tasksStoreId = 0
-        makeAutoObservable(this)
     }
 
     get getColumnsStoresArray() {
@@ -34,24 +34,20 @@ class StoreFactory {
         return this.tasksStoreArray
     }
 
-    get getAddStoreArray() {
-        return this.addStoreArray
+    get getCreatorStoreArray() {
+        return this.creatorStoreArray
     }
 
-    createAddStore = (): number => {
+    createCreatorStore = (): number => {
         const arrayItem = {
-            store: new AddStore(),
-            id: this.addStoreId
+            store: new CreatorStore(),
+            id: this.creatorStoreId
         }
 
-        this.addStoreArray.push(arrayItem)
-        this.addStoreId++
+        this.creatorStoreArray.push(arrayItem)
+        this.creatorStoreId++
 
         return arrayItem.id
-    }
-
-    getAddStore = (id: number) => {
-        return this.addStoreArray.find((store)=>store.id === id)
     }
 
     createTasksStore = (id: number) => {
@@ -65,6 +61,15 @@ class StoreFactory {
 
         return arrayItem.id
     }
+
+    getCreatorStore = (id: number) => {
+        return this.creatorStoreArray.find((store)=>store.id === id)
+    }
+
+    getTaskStore = (id: number) => {
+        return this.tasksStoreArray.find((store)=>store.id === id)
+    }
+
 }
 
 export default new StoreFactory()

@@ -1,15 +1,19 @@
 import { observer } from "mobx-react-lite"
 import { createTasksStore } from '../../store/TasksStore'
-import { createAddStore } from '../../store/addStore'
+import { createCreatorStore } from '../../store/CreatorStore'
 import columnsStore from '../../store/ColumnsStore'
 import './style.css'
 import ColumnCreatorForm from "../ColumnCreatorForm"
-import FormOpener from "../FormOpener"
-import { IAddStore } from '../../types'
-import { FC,ChangeEvent } from 'react'
+import FormOpener from "../../components/FormOpener"
+import { ICreatorStore } from '../../types/creatorTypes'
+import { FC, ChangeEvent, useContext } from 'react'
+import { TableContext } from '../../context/tableContext'
+import { IStoreArrayItem } from '../../store/storeFactory'
 
-const ColumnCreator: FC<{addStore: IAddStore}> = ({addStore}) => {
-    const {title, toggleFormColumn, changeTitle, openedColumnForm} = addStore
+const ColumnCreator: FC<{storeId: number}> = ({storeId}) => {
+    const tableContext = useContext(TableContext)
+    const CreatorStore = tableContext.getCreatorStore(storeId) as IStoreArrayItem<ICreatorStore>
+    const {title, toggleFormColumn, changeTitle, openedColumnForm} = CreatorStore.store 
 
     const clearForm = () => {
         changeTitle('','column') 
@@ -18,7 +22,7 @@ const ColumnCreator: FC<{addStore: IAddStore}> = ({addStore}) => {
 
     const addNewColumn = () => {
         if (title.columnName) {
-            columnsStore.addColumn(title.columnName, createTasksStore(columnsStore.currentId),createAddStore())
+            columnsStore.addColumn(title.columnName, createTasksStore(columnsStore.currentId),createCreatorStore())
             clearForm()
             columnsStore.saveColumnsInLocalStorage()
         }

@@ -1,9 +1,9 @@
 import { makeAutoObservable } from "mobx";
-import { IColumn,ITasksStore,IAddStore,IColumnsStore } from "../types";
+import { IColumn,IColumnsStore } from "../types/columnTypes"
+import { ITasksStore } from '../types/taskTypes'
+import { ICreatorStore } from '../types/creatorTypes'
 import { createTasksStore } from "./TasksStore";
-import { createAddStore } from "./addStore";
-
-
+import { createCreatorStore} from "./CreatorStore";
 
 class ColumnsStore implements IColumnsStore{
     public columns: IColumn[]
@@ -14,13 +14,13 @@ class ColumnsStore implements IColumnsStore{
         makeAutoObservable(this)
     }
 
-    addColumn = (columnName: string, tasksStore: ITasksStore,addStore: IAddStore ) => {
+    addColumn = (columnName: string, tasksStore: ITasksStore, creatorStore: ICreatorStore ) => {
         this.columns.push(
             {
                 title: columnName,
                 id: this.currentId,
                 tasksStore,
-                addStore 
+                creatorStore 
             }
         )
             
@@ -43,13 +43,13 @@ class ColumnsStore implements IColumnsStore{
             columnsList.forEach((column)=>{
 
                 const tasksStore = createTasksStore(this.currentId)
-                const addStore = createAddStore()
+                const creatorStore = createCreatorStore()
 
                 column.tasksStore.tasks.forEach((task)=>{
                     tasksStore.addTask(task.title,task.dateCreate,task.taskFileList)
                 })
 
-                this.addColumn(column.title,tasksStore,addStore)
+                this.addColumn(column.title,tasksStore,creatorStore)
             })
         }
     }

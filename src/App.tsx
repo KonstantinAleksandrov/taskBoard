@@ -1,15 +1,18 @@
-import Table from './components/Table/Table';
-import AddStore from './store/addStore';
-import ColumnCreator from './components/ColumnCreator';
+import Table from './containers/Table/Table';
+import ColumnCreator from './containers/ColumnCreator';
+import { TableContext } from './context/tableContext';
+import storeFactory from './store/storeFactory';
 
 const App = () => {
   return (
-    <div className="App">
-      <div className='wrapper'>
-        <Table/>
-        <ColumnCreator  addStore={new AddStore()}/>
+    <TableContext.Provider value={storeFactory}>
+      <div className="App">
+        <div className='wrapper'>
+          <Table/>
+          <ColumnCreator  storeId={storeFactory.createCreatorStore()}/>
+        </div>
       </div>
-    </div>
+    </TableContext.Provider>
   );
 }
 

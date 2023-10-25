@@ -1,5 +1,5 @@
 import { makeAutoObservable } from "mobx"
-import { ITask,ITasksStore, IExtendedTask } from '../types'
+import { ITask,ITasksStore, IExtendedTask } from '../types/taskTypes'
 
 class TasksStore implements ITasksStore {
     public tasks: ITask[]
@@ -30,6 +30,7 @@ class TasksStore implements ITasksStore {
         this.tasks = this.tasks.filter((task)=> task.id !== id)
     }
 
+    //логика смены мест при dnd внутри ондной колонки
     moveTasksWithinColumn = ( dragIndex: number  , hoverIndex: number ) => {
         const dragItem = this.tasks[dragIndex]
         const hoverItem = this.tasks[hoverIndex]
@@ -39,6 +40,7 @@ class TasksStore implements ITasksStore {
         this.tasks = updatedTasks
     }
 
+    //логика добавления задачи из другой колонки в эту колонку на полученную позицию
     insertTaskAnywhere = (task: IExtendedTask ,index: number ) => {
         const currentColumns = this.tasks.slice(0,index)
         const currentTask = {title: task.title, id: this.currentId,dateCreate: task.dateCreate,taskFileList: task.taskFileList }

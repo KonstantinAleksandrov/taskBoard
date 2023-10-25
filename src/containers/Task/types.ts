@@ -1,4 +1,4 @@
-import { ITask ,ITasksStore,IDragingState} from '../../types'
+import { ITask ,ITasksStore,IDragingState} from '../../types/taskTypes'
 import { Dispatch,SetStateAction } from 'react'
 
 export interface ITaskProps {

@@ -1,6 +1,6 @@
 import './style.css'
 import { FC } from 'react'
-import CloseCross from '../CloseCross/CloseCross'
+import CloseCross from '../../components/CloseCross/CloseCross'
 import { dragStartHandler, dragLeaveHandler,dragEndHandler,dragOverHandler,dragDropHandler } from '../../utils/dndUtils'
 import columnsStore from '../../store/ColumnsStore'
 import { ITaskProps } from './types'

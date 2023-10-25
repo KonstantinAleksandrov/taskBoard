@@ -1,11 +1,11 @@
 import { observer } from "mobx-react-lite"
 import './style.css'
-import AddButton from "../AddButton"
-import CloseCross from "../CloseCross/CloseCross"
-import CustomTextarea from "../CustomTextarea"
+import AddButton from "../../components/AddButton"
+import CloseCross from "../../components/CloseCross/CloseCross"
+import CustomTextarea from "../../components/CustomTextarea"
 import LoadFile from '../LoadFile/LoadFile'
 import { FC } from 'react'
-import Preloader from "../Preloader/Preloader"
+import Preloader from "../../components/Preloader/Preloader"
 import { ITaskCreatorForm } from './types'
 
 const TaskCreatorForm: FC<{options: ITaskCreatorForm}> = ({options}) => {

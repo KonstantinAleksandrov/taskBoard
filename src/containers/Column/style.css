@@ -1,5 +1,7 @@
 .column {
-    width: 250px;
+    width: 15vw; 
+    min-width: 250px;
+   /*  flex: 0 0 15vw; */
     background-color: rgb(222, 226, 229);
     border-radius: 5px;
     padding-top: 5px;

@@ -1,30 +1,26 @@
 import React ,{ Dispatch, SetStateAction} from 'react'
-import { ITasksStore, IExtendedTask,IDragingState } from '../types'
+import { ITasksStore, IExtendedTask,IDragingState } from '../types/taskTypes'
 import columnsStore from '../store/ColumnsStore';
 
+
+//убираем реакцию на события у дочерних елементов верхнего уровня у всех task
 const changeClassList = (type: 'add' | 'delete') => {
-    if(type === 'add') {
-        const tasks = Array.from(document.getElementsByClassName('task'));
-        tasks.forEach((task)=>{
-            const children = Array.from(task.children);
-            children.forEach((child)=>{
+    const tasks = Array.from(document.getElementsByClassName('task'));
+    tasks.forEach((task)=>{
+        const children = Array.from(task.children);
+        children.forEach((child)=>{
+            if (type === 'add') {
                 child.classList.add('dragging')
-            })
-        })
-    }else {
-        const tasks = Array.from(document.getElementsByClassName('task'));
-        tasks.forEach((task)=>{
-            const children = Array.from(task.children);
-            children.forEach((child)=>{
+            }else {
                 if(child.classList.contains('dragging')) {
                     child.classList.remove('dragging')
                 }
-            })
+            }
         })
-    }
-
+    })
 } 
 
+// обработчик захвата элемента
 export const dragStartHandler = (
         setState: Dispatch<SetStateAction<IDragingState>>,
         task: IExtendedTask,
@@ -35,6 +31,7 @@ export const dragStartHandler = (
         changeClassList('add')    
 }
 
+//обработчик срабатывает когда покидаем элемент под переносимым элементом
 export const dragLeaveHandler = (e: React.DragEvent) => {
     const leavedElem = e.target as HTMLElement
     const leavedTask = leavedElem.closest('.task') as HTMLElement
@@ -43,6 +40,7 @@ export const dragLeaveHandler = (e: React.DragEvent) => {
     }
 }
 
+//обработчик для захваченного элемента срабатывает когда завершили или прервали перенос
 export const dragEndHandler = (e: React.DragEvent) => {
     const dragingElem = e.target as HTMLElement
     const dragingTask = dragingElem.closest('.task') as HTMLElement
@@ -51,6 +49,7 @@ export const dragEndHandler = (e: React.DragEvent) => {
     }
 }
 
+//обработчик срабатывает для элемента над которым переноси захваченный элемент
 export const dragOverHandler = (
     e: React.DragEvent,
     draging: IDragingState,
@@ -91,6 +90,7 @@ export const dragOverHandler = (
         } */
 }
 
+//обработчик срабатывает в момент броска захваченного элемента для элемента на который бросили
 export const dragDropHandler = (
         e: React.DragEvent, 
         draging: IDragingState,

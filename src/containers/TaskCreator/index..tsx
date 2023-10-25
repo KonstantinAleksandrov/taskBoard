@@ -4,11 +4,11 @@ import { FC, ChangeEvent } from 'react'
 import { getDate } from "../../utils/dateUtils"
 import columnsStore from '../../store/ColumnsStore'
 import TaskCreatorForm from "../TaskCreatorForm"
-import FormOpener from "../FormOpener"
+import FormOpener from "../../components/FormOpener"
 import { ITaskCreator } from './types'
 
-const TaskCreator: FC<ITaskCreator> = ({addStore,tasksStore}) => {
-    const {title, changeTitle, taskFileList, toggleFormTask, openedTaskForm, clearFileList, addFile, isLoading, changeLoading} = addStore
+const TaskCreator: FC<ITaskCreator> = ({creatorStore,tasksStore}) => {
+    const {title, changeTitle, taskFileList, toggleFormTask, openedTaskForm, clearFileList, addFile, isLoading, changeLoading} = creatorStore
     const { addTask } = tasksStore
 
     const clearForm = () => {

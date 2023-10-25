@@ -1,9 +1,9 @@
 import { observer } from "mobx-react-lite"
 import './style.css'
-import CustomTextarea from "../CustomTextarea"
-import AddButton from "../AddButton"
+import CustomTextarea from "../../components/CustomTextarea"
+import AddButton from "../../components/AddButton"
 import { FC } from 'react'
-import CloseCross from "../CloseCross/CloseCross"
+import CloseCross from "../../components/CloseCross/CloseCross"
 import { IColumnCreatorForm } from "./types"
 
 const ColumnCreatorForm: FC<{options: IColumnCreatorForm}> = ({options}) => {

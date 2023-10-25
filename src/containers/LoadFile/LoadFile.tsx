@@ -1,6 +1,6 @@
 import './style.css'
 import { FC } from 'react'
-import ClipIcon from '../ClipIcon'
+import ClipIcon from '../../components/ClipIcon'
 import { ILoadFileProps } from './types'
 import { inputHandler } from './ustils'
 
