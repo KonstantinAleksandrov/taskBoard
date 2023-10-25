@@ -1,7 +1,8 @@
 export interface ILoadFile {
     tempStorageSave: (file: string) => void,
     changeLoading: () => void,
-    clearFileList: () => void
+    clearFileList: () => void,
+    columnId: number
 }
 
 export interface ILoadFileProps {

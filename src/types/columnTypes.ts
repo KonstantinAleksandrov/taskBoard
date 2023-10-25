@@ -1,18 +1,25 @@
 import { ITasksStore } from './taskTypes'
 import { ICreatorStore } from './creatorTypes'
 
+export interface ITask{
+    title: string,
+    id: number,
+    dateCreate: string,
+    fileList: string[]
+}
+
 export interface IColumn {
     title: string,
     id: number,
-    tasksStore: ITasksStore,
-    creatorStore: ICreatorStore
+    tasks: ITask[]
 }
 
-export interface IColumnsStore {
+export interface ITableStore {
     columns: IColumn[],
-    currentId: number,
-    addColumn: ( columnName: string, tasksStore: ITasksStore,creatorStore: ICreatorStore ) => void,
+    columnId: number,
+    taskId: number
+    createNewColumn: ( columnName: string) => void,
     removeColumn: ( id: number ) => void,
-    saveColumnsInLocalStorage: () => void,
-    getColumnsOutLocalStorage: () => void
+   /*  saveColumnsInLocalStorage: () => void,
+    getColumnsOutLocalStorage: () => void */
 }

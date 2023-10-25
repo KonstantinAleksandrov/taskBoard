@@ -1,55 +1,59 @@
 import { observer } from "mobx-react-lite"
 import './style.css'
-import { FC, ChangeEvent } from 'react'
+import { FC, ChangeEvent,useContext, useEffect } from 'react'
 import { getDate } from "../../utils/dateUtils"
-import columnsStore from '../../store/ColumnsStore'
 import TaskCreatorForm from "../TaskCreatorForm"
 import FormOpener from "../../components/FormOpener"
-import { ITaskCreator } from './types'
+import { useTaskCreator } from "../../hooks/useTaskCreator"
+import { TableContext } from "../../context/tableContext"
 
-const TaskCreator: FC<ITaskCreator> = ({creatorStore,tasksStore}) => {
-    const {title, changeTitle, taskFileList, toggleFormTask, openedTaskForm, clearFileList, addFile, isLoading, changeLoading} = creatorStore
-    const { addTask } = tasksStore
+const TaskCreator: FC<{columnId: number}> = ({columnId}) => {
+    const { creator, openCloseform, changeTitle, addFile, clearFileList, changeLoading } = useTaskCreator(columnId)
+    const tableContext = useContext(TableContext)
+    useEffect(()=>{
+        console.log(columnId)
+    },[creator])
 
     const clearForm = () => {
-        changeTitle('','task') 
-        toggleFormTask()
+        changeTitle('') 
         clearFileList()
+        openCloseform()
     }
 
     const addNewTask = () => {
-        if (title.taskName) {
-            addTask(title.taskName, getDate(), taskFileList)
+        if (creator.taskTitle) {
+            tableContext.addTask(creator.taskTitle, getDate(), creator.fileList,columnId)
             clearForm()
-            columnsStore.saveColumnsInLocalStorage()
+          /*   columnsStore.saveColumnsInLocalStorage() */
         }
     }
 
     const textareaChange = (e: ChangeEvent) => {
         const target = e.target as HTMLTextAreaElement
-        changeTitle(target.value,'task')
+        changeTitle(target.value)
     }
 
     return (
         <div className="taskCreator">
-            {openedTaskForm 
+            {creator.formIsOpen 
             ? <TaskCreatorForm
                 options={{
                     clickHandler: addNewTask,
                     changeHandler: textareaChange,
-                    value: title.taskName,
+                    value: creator.taskTitle,
                     closeHandler: clearForm,
-                    taskFileList,
+                    taskFileList: creator.fileList,
                     clearFileList,
                     tempStorageSave: addFile,
                     changeLoading,
-                    isLoading  
+                    isLoading: creator.fileIsLoading,
+                    columnId: columnId 
                 }}
               />
             : <FormOpener 
                 options={{
                     title: '+ Add new task',
-                    toggleHandler: toggleFormTask
+                    toggleHandler: openCloseform
                 }}
               />
             }

@@ -4,7 +4,7 @@ export interface ITask{
     title: string,
     id: number,
     dateCreate: string,
-    taskFileList: string[]
+    fileList: string[]
 }
 
 export interface IExtendedTask extends ITask {

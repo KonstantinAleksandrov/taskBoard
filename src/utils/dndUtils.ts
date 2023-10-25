@@ -1,6 +1,6 @@
 import React ,{ Dispatch, SetStateAction} from 'react'
 import { ITasksStore, IExtendedTask,IDragingState } from '../types/taskTypes'
-import columnsStore from '../store/ColumnsStore';
+import columnsStore from '../store/tableStore';
 
 
 //убираем реакцию на события у дочерних елементов верхнего уровня у всех task
@@ -112,5 +112,5 @@ export const dragDropHandler = (
             draging.removeTask(draging.id)
             tasksStore.insertTaskAnywhere(draging, task.index)
         }
-        columnsStore.saveColumnsInLocalStorage()
+       /*  columnsStore.saveColumnsInLocalStorage() */
 }  

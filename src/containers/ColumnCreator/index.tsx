@@ -1,53 +1,48 @@
 import { observer } from "mobx-react-lite"
-import { createTasksStore } from '../../store/TasksStore'
-import { createCreatorStore } from '../../store/CreatorStore'
-import columnsStore from '../../store/ColumnsStore'
 import './style.css'
 import ColumnCreatorForm from "../ColumnCreatorForm"
 import FormOpener from "../../components/FormOpener"
-import { ICreatorStore } from '../../types/creatorTypes'
-import { FC, ChangeEvent, useContext } from 'react'
+import { ChangeEvent, useContext, useEffect } from 'react'
 import { TableContext } from '../../context/tableContext'
-import { IStoreArrayItem } from '../../store/storeFactory'
+import { useColumnCreator } from "../../hooks/useColumnCreator"
 
-const ColumnCreator: FC<{storeId: number}> = ({storeId}) => {
+const ColumnCreator = () => {
     const tableContext = useContext(TableContext)
-    const CreatorStore = tableContext.getCreatorStore(storeId) as IStoreArrayItem<ICreatorStore>
-    const {title, toggleFormColumn, changeTitle, openedColumnForm} = CreatorStore.store 
+    const {creator, openCloseform, changeTitle} = useColumnCreator()
 
     const clearForm = () => {
-        changeTitle('','column') 
-        toggleFormColumn()
+        changeTitle('')
+        openCloseform() 
     }
 
-    const addNewColumn = () => {
-        if (title.columnName) {
-            columnsStore.addColumn(title.columnName, createTasksStore(columnsStore.currentId),createCreatorStore())
+    const createNewColumn = () => {
+        if (creator.columnTitle) {
+            tableContext.createNewColumn(creator.columnTitle)
             clearForm()
-            columnsStore.saveColumnsInLocalStorage()
+            /* columnsStore.saveColumnsInLocalStorage() */
         }
     }
 
     const textareaChange = (e: ChangeEvent) => {
         const target = e.target as HTMLTextAreaElement
-        changeTitle(target.value,'column')
+        changeTitle(target.value)
     }
 
     return (
         <div className="columnCreator">
-            {openedColumnForm 
+            {creator.formIsOpen 
             ? <ColumnCreatorForm
                 options={{
-                    clickHandler: addNewColumn,
+                    clickHandler: createNewColumn,
                     changeHandler: textareaChange,
-                    value: title.columnName,
+                    value: creator.columnTitle,
                     closeHandler: clearForm
                 }}
               />
             : <FormOpener 
                 options={{
                     title: '+ Add new column',
-                    toggleHandler: toggleFormColumn
+                    toggleHandler: openCloseform
                 }}
               />
             }

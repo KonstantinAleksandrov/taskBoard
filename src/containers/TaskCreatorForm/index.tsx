@@ -4,13 +4,28 @@ import AddButton from "../../components/AddButton"
 import CloseCross from "../../components/CloseCross/CloseCross"
 import CustomTextarea from "../../components/CustomTextarea"
 import LoadFile from '../LoadFile/LoadFile'
-import { FC } from 'react'
+import { FC, useEffect } from 'react'
 import Preloader from "../../components/Preloader/Preloader"
 import { ITaskCreatorForm } from './types'
 
 const TaskCreatorForm: FC<{options: ITaskCreatorForm}> = ({options}) => {
-    const { value, taskFileList, isLoading, changeLoading, changeHandler, clickHandler, closeHandler, clearFileList, tempStorageSave} = options
+    const 
+    { 
+        value, 
+        taskFileList, 
+        isLoading, 
+        changeLoading, 
+        changeHandler, 
+        clickHandler, 
+        closeHandler, 
+        clearFileList, 
+        tempStorageSave,
+        columnId
+    } = options
 
+    useEffect(()=>{
+        console.log(columnId)
+    },[isLoading,value])
     return (
         <div className="taskCreatorForm">
             <CustomTextarea
@@ -37,7 +52,7 @@ const TaskCreatorForm: FC<{options: ITaskCreatorForm}> = ({options}) => {
                 {isLoading && <Preloader/>}
                 </AddButton>
                 <div className="taskCreatorForm__buttons-rightColumn">
-                    <LoadFile options={{tempStorageSave: tempStorageSave, changeLoading, clearFileList}}/>
+                    <LoadFile options={{tempStorageSave: tempStorageSave, changeLoading, clearFileList, columnId}}/>
                     <CloseCross closeHandler={closeHandler}/>
                 </div>
             </div>

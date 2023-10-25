@@ -9,5 +9,6 @@ export interface ITaskCreatorForm{
     clearFileList: () => void,
     changeLoading: () => void,
     tempStorageSave: (file: string) => void,
-    isLoading: boolean
+    isLoading: boolean,
+    columnId: number
 }

@@ -13,21 +13,21 @@ class TasksStore implements ITasksStore {
     }
 
     addTask = (taskName: string,date: string, fileList: string[]) => {
-        this.tasks.push(
+      /*   this.tasks.push(
             {
                 title: taskName,
                 id: this.currentId,
                 dateCreate: date,
-                taskFileList: fileList
+                fileList: fileList
             }
         )
 
 
-        this.currentId++
+        this.currentId++ */
     }
 
     removeTask = (id: number) => {
-        this.tasks = this.tasks.filter((task)=> task.id !== id)
+        /* this.tasks = this.tasks.filter((task)=> task.id !== id) */
     }
 
     //логика смены мест при dnd внутри ондной колонки
@@ -42,11 +42,11 @@ class TasksStore implements ITasksStore {
 
     //логика добавления задачи из другой колонки в эту колонку на полученную позицию
     insertTaskAnywhere = (task: IExtendedTask ,index: number ) => {
-        const currentColumns = this.tasks.slice(0,index)
-        const currentTask = {title: task.title, id: this.currentId,dateCreate: task.dateCreate,taskFileList: task.taskFileList }
+       /*  const currentColumns = this.tasks.slice(0,index)
+        const currentTask = {title: task.title, id: this.currentId,dateCreate: task.dateCreate,taskFileList: task.fileList }
         currentColumns.push(currentTask)
         this.tasks = [...currentColumns,...this.tasks.slice(index)]
-        this.currentId++
+        this.currentId++ */
     }
     
 }

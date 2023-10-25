@@ -1,28 +1,30 @@
 import './style.css'
-import { FC } from 'react'
+import { FC , useContext} from 'react'
+import { TableContext } from '../../context/tableContext'
 import CloseCross from '../../components/CloseCross/CloseCross'
 import { dragStartHandler, dragLeaveHandler,dragEndHandler,dragOverHandler,dragDropHandler } from '../../utils/dndUtils'
-import columnsStore from '../../store/ColumnsStore'
 import { ITaskProps } from './types'
+import { ITask } from '../../types/taskTypes'
 
-const Task: FC<{options: ITaskProps}> = ({options}) => {
-
-    const {tasksStore, taskIndex, task, setdraging, draging} = options
+const Task: FC<{options: ITaskProps}> = ({options}) => { 
+    const {taskIndex, setdraging, draging, columnId, taskId} = options
+    const tableContext = useContext(TableContext)
+    const task = tableContext.getTask(taskId,columnId) as ITask
 
     const deleteTask = () => {
-        tasksStore.removeTask(task.id) 
-        columnsStore.saveColumnsInLocalStorage()
+        tableContext.removeTask(task.id,columnId) 
+       /*  columnsStore.saveColumnsInLocalStorage() */
     }
 
     return (
         <div 
         className="task" 
         draggable={true}
-        onDragStart={(e)=> dragStartHandler(setdraging, {...task, index: taskIndex}, tasksStore,e.target as HTMLElement) }
+       /*  onDragStart={(e)=> dragStartHandler(setdraging, {...task, index: taskIndex}, tasksStore,e.target as HTMLElement) }
         onDragLeave={(e)=> dragLeaveHandler(e)}
         onDragEnd={(e)=> dragEndHandler(e)}
         onDragOver={(e)=> dragOverHandler(e,draging, {...task, index: taskIndex}, tasksStore)}
-        onDrop={(e)=> dragDropHandler(e, draging, {...task, index: taskIndex}, tasksStore)}
+        onDrop={(e)=> dragDropHandler(e, draging, {...task, index: taskIndex}, tasksStore)} */
         >
             <div className='task__header'>
                 <div className='task__header-title'>{task.title}</div>
@@ -30,7 +32,7 @@ const Task: FC<{options: ITaskProps}> = ({options}) => {
             </div>
             <div className='task__body'>
                 <div className='task__body-images task__images'>
-                    {task.taskFileList.map((image,index)=>{
+                    {task.fileList.map((image,index)=>{
                         return (
                             <div className='task__images-img' key={index}>
                                  <img src={image} alt="img" draggable={false}/>
