@@ -1,5 +1,5 @@
 import './style.css'
-import { FC, useEffect} from 'react'
+import { FC } from 'react'
 import ClipIcon from '../../components/ClipIcon'
 import { ILoadFileProps } from './types'
 import { inputHandler } from './ustils'
@@ -7,24 +7,18 @@ import { observer } from 'mobx-react-lite'
 
 
 const LoadFile:FC<ILoadFileProps> = ({ options }) => {
-    useEffect(()=> {
-        console.log('loading',options.columnId)
-    },[])
 
     const { clearFileList, changeLoading, tempStorageSave } = options
 
     return (
         <div className="loadFile">
             <input 
-            id='loadFileInput'
+            id={`${options.columnId}`}
             type="file" 
             accept=".jpg, .jpeg, .png , .svg"
-            onChange={(e)=> {
-                console.log('change',options.columnId)
-                inputHandler(e, clearFileList, changeLoading, tempStorageSave)
-            }}
+            onChange={(e)=> {inputHandler(e, clearFileList, changeLoading, tempStorageSave)}}
             />
-            <label htmlFor="loadFileInput">
+            <label htmlFor={`${options.columnId}`}>
                 <ClipIcon/>
             </label>
         </div>

@@ -1,5 +1,6 @@
 import { makeAutoObservable } from "mobx";
 import { IColumn,ITableStore } from "../types/columnTypes"
+import { IDragingState } from "../types/taskTypes"
 
 class TableStore implements ITableStore{
     public columns: IColumn[]
@@ -71,6 +72,29 @@ class TableStore implements ITableStore{
             }
         }else {
             throw new Error('Не найдена колонка для поиска задач')
+        }
+    }
+
+    //логика смены мест при dnd внутри ондной колонки
+    moveTasksWithinColumn = ( dragIndex: number , dropIndex: number, columnId: number ) => {
+        const currentColumn = this.getColumn(columnId)
+        
+        if (currentColumn) {
+            const dragTask = currentColumn.tasks[dragIndex] // задача которую захватили
+            const dropTask = currentColumn.tasks[dropIndex] // задача на которую бросили
+            currentColumn.tasks[dragIndex] = dropTask
+            currentColumn.tasks[dropIndex] = dragTask
+        }
+    }
+
+    //логика добавления задачи из другой колонки в эту колонку на полученную позицию
+    insertTaskAnywhere = (task: IDragingState ,dropIndex: number, dropColumnId: number ) => {
+        const currentColumn = this.getColumn(dropColumnId)
+
+        if (currentColumn) {
+            const tempTasks = currentColumn.tasks.slice(0,dropIndex) 
+            tempTasks.push(task)
+            currentColumn.tasks = [...tempTasks,...currentColumn.tasks.slice(dropIndex)]
         }
     }
 

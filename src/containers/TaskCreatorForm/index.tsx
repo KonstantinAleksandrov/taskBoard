@@ -4,7 +4,7 @@ import AddButton from "../../components/AddButton"
 import CloseCross from "../../components/CloseCross/CloseCross"
 import CustomTextarea from "../../components/CustomTextarea"
 import LoadFile from '../LoadFile/LoadFile'
-import { FC, useEffect } from 'react'
+import { FC } from 'react'
 import Preloader from "../../components/Preloader/Preloader"
 import { ITaskCreatorForm } from './types'
 
@@ -23,9 +23,6 @@ const TaskCreatorForm: FC<{options: ITaskCreatorForm}> = ({options}) => {
         columnId
     } = options
 
-    useEffect(()=>{
-        console.log(columnId)
-    },[isLoading,value])
     return (
         <div className="taskCreatorForm">
             <CustomTextarea

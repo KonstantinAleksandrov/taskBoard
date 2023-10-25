@@ -21,6 +21,7 @@ export interface ITasksStore {
     insertTaskAnywhere: (task: IExtendedTask ,index: number)  => void
 }
 
-export interface IDragingState extends IExtendedTask , ITasksStore{
-    htmlElement: HTMLElement
+export interface IDragingState extends IExtendedTask {
+    htmlElement: HTMLElement,
+    columnId: number,
 }

@@ -1,4 +1,3 @@
-import columnsStore from '../../store/tableStore';
 import Column from '../Column/Column';
 import './style.css'
 import { useState,useEffect,useContext } from 'react'

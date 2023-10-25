@@ -1,6 +1,6 @@
 import React ,{ Dispatch, SetStateAction} from 'react'
-import { ITasksStore, IExtendedTask,IDragingState } from '../types/taskTypes'
-import columnsStore from '../store/tableStore';
+import { ITasksStore, IExtendedTask,IDragingState, ITask } from '../types/taskTypes'
+import tableStore from '../store/tableStore';
 
 
 //убираем реакцию на события у дочерних елементов верхнего уровня у всех task
@@ -24,10 +24,11 @@ const changeClassList = (type: 'add' | 'delete') => {
 export const dragStartHandler = (
         setState: Dispatch<SetStateAction<IDragingState>>,
         task: IExtendedTask,
-        tasksStore: ITasksStore,
+        columnId: number,
+       /*  tasks: ITask[], */
         htmlElement: HTMLElement
     ) => {
-        setState({...task,...tasksStore, htmlElement})
+        setState({...task,columnId, htmlElement})
         changeClassList('add')    
 }
 
@@ -52,9 +53,6 @@ export const dragEndHandler = (e: React.DragEvent) => {
 //обработчик срабатывает для элемента над которым переноси захваченный элемент
 export const dragOverHandler = (
     e: React.DragEvent,
-    draging: IDragingState,
-    task: IExtendedTask,
-    tasksStore: ITasksStore
     ) => {
         e.preventDefault()
         const overElem = e.target as HTMLElement
@@ -62,32 +60,6 @@ export const dragOverHandler = (
         if(hideTask) {
             hideTask.style.opacity = '0'
         }
-       /*  const dragingTaskCoords = draging.htmlElement.getBoundingClientRect()
-        const middleDragingTaskCoords = (dragingTaskCoords.bottom - dragingTaskCoords.top) / 2
-        const currentMouseCords = e.clientY - dragingTaskCoords.top
-        
-        if (draging.index < task.index && currentMouseCords < middleDragingTaskCoords) {
-            console.log(1)
-            return
-        }
-        
-        if (draging.index > task.index && currentMouseCords > middleDragingTaskCoords) {
-            console.log(2)
-            return 
-        }
-        if(draging.index == task.index) {
-            return
-        }
-
-        if(currentMouseCords === middleDragingTaskCoords) {
-            console.log(2599999)
-            tasksStore.moveTasksWithinColumn(draging.index,task.index)
-        }
-
-        if ( draging.columnId === tasksStore.columnId) {
-            console.log(2599999)
-            tasksStore.moveTasksWithinColumn(draging.index,task.index)
-        } */
 }
 
 //обработчик срабатывает в момент броска захваченного элемента для элемента на который бросили
@@ -95,7 +67,7 @@ export const dragDropHandler = (
         e: React.DragEvent, 
         draging: IDragingState,
         task: IExtendedTask,
-        tasksStore: ITasksStore
+        columnId: number
     ) => {
         e.preventDefault()
         const dropElem = e.target as HTMLElement
@@ -106,11 +78,16 @@ export const dragDropHandler = (
             dropTask.style.opacity = '1'
         }
 
-        if ( draging.columnId === tasksStore.columnId) {
-            tasksStore.moveTasksWithinColumn(draging.index,task.index)
+        console.log('draging',draging)
+        console.log('task',{...task,columnId})
+
+        if (draging.columnId === columnId) {
+            tableStore.moveTasksWithinColumn(draging.index,task.index,columnId)
         }else {
-            draging.removeTask(draging.id)
-            tasksStore.insertTaskAnywhere(draging, task.index)
+            tableStore.removeTask(draging.id,draging.columnId)
+            tableStore.insertTaskAnywhere(draging,task.index,columnId)
+           /*  draging.removeTask(draging.id)
+            tasksStore.insertTaskAnywhere(draging, task.index) */
         }
        /*  columnsStore.saveColumnsInLocalStorage() */
 }  

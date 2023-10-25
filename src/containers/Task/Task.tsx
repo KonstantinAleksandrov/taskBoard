@@ -20,11 +20,11 @@ const Task: FC<{options: ITaskProps}> = ({options}) => {
         <div 
         className="task" 
         draggable={true}
-       /*  onDragStart={(e)=> dragStartHandler(setdraging, {...task, index: taskIndex}, tasksStore,e.target as HTMLElement) }
+        onDragStart={(e)=> dragStartHandler(setdraging,  {...task, index: taskIndex }, columnId, e.target as HTMLElement ) }
         onDragLeave={(e)=> dragLeaveHandler(e)}
         onDragEnd={(e)=> dragEndHandler(e)}
-        onDragOver={(e)=> dragOverHandler(e,draging, {...task, index: taskIndex}, tasksStore)}
-        onDrop={(e)=> dragDropHandler(e, draging, {...task, index: taskIndex}, tasksStore)} */
+        onDragOver={(e)=> dragOverHandler(e)}
+        onDrop={(e)=> dragDropHandler(e, draging, {...task, index: taskIndex},columnId)}
         >
             <div className='task__header'>
                 <div className='task__header-title'>{task.title}</div>

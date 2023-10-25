@@ -1,6 +1,6 @@
 import { observer } from "mobx-react-lite"
 import './style.css'
-import { FC, ChangeEvent,useContext, useEffect } from 'react'
+import { FC, ChangeEvent,useContext } from 'react'
 import { getDate } from "../../utils/dateUtils"
 import TaskCreatorForm from "../TaskCreatorForm"
 import FormOpener from "../../components/FormOpener"
@@ -8,11 +8,8 @@ import { useTaskCreator } from "../../hooks/useTaskCreator"
 import { TableContext } from "../../context/tableContext"
 
 const TaskCreator: FC<{columnId: number}> = ({columnId}) => {
-    const { creator, openCloseform, changeTitle, addFile, clearFileList, changeLoading } = useTaskCreator(columnId)
+    const { creator, openCloseform, changeTitle, addFile, clearFileList, changeLoading } = useTaskCreator()
     const tableContext = useContext(TableContext)
-    useEffect(()=>{
-        console.log(columnId)
-    },[creator])
 
     const clearForm = () => {
         changeTitle('') 
