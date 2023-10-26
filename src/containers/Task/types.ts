@@ -1,4 +1,4 @@
-import { IDragingState } from '../../types/tableTypes'
+import { IDragingState } from '../../types'
 import { Dispatch,SetStateAction } from 'react'
 
 export interface ITaskProps {

@@ -26,5 +26,4 @@ export interface ITableStore {
     taskId: number
     createNewColumn: ( columnName: string) => void,
     removeColumn: ( id: number ) => void,
-   /*getColumnsOutLocalStorage: () => void */
 }

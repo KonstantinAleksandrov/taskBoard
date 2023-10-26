@@ -1,6 +1,6 @@
 import { Table, ColumnCreator } from './containers';
-import { TableContext } from './context/tableContext';
-import tableStore from './store/tableStore';
+import { TableContext } from './contexts';
+import { tableStore } from './stores';
 
 const App = () => {
   return (

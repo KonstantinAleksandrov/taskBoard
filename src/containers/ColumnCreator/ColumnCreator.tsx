@@ -3,9 +3,9 @@ import './style.css'
 import { ColumnCreatorForm } from "../ColumnCreatorForm"
 import { FormOpener} from '../../components'
 import { ChangeEvent, useContext } from 'react'
-import { TableContext } from '../../context/tableContext'
-import { useColumnCreator } from "../../hooks/useColumnCreator"
-import { saveTableData } from "../../services/dataService"
+import { TableContext } from '../../contexts'
+import { useColumnCreator } from "../../hooks"
+import { saveTableData } from "../../services"
 
 
 // контайнер добавляет новую колонку

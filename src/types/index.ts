@@ -1,0 +1,1 @@
+export type { ITask, IColumn, IExtendedTask, IDragingState, ITableStore } from './tableTypes'

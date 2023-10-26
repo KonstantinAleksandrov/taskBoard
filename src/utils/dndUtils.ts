@@ -1,7 +1,7 @@
 import React ,{ Dispatch, SetStateAction} from 'react'
-import { IExtendedTask,IDragingState } from '../types/tableTypes'
-import tableStore from '../store/tableStore'
-import { saveTableData } from '../services/dataService'
+import { IExtendedTask,IDragingState } from '../types'
+import { tableStore } from '../stores'
+import { saveTableData } from '../services'
 
 
 //убираем реакцию на события у дочерних елементов верхнего уровня у всех task

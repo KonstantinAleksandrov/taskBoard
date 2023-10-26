@@ -5,9 +5,9 @@ import { Task }  from '../Task'
 import { FC ,useContext } from 'react'
 import { observer } from 'mobx-react-lite'
 import { IColumnProps } from './types'
-import { TableContext } from '../../context/tableContext'
-import { IColumn } from '../../types/tableTypes'
-import { saveTableData } from '../../services/dataService'
+import { TableContext } from '../../contexts'
+import { IColumn } from '../../types'
+import { saveTableData } from '../../services'
 
 
 const Column: FC<IColumnProps> = ({columnId, draging, setDraging}) => {

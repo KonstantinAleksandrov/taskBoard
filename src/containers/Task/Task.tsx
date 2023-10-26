@@ -1,11 +1,11 @@
 import './style.css'
 import { FC , useContext} from 'react'
-import { TableContext } from '../../context/tableContext'
+import { TableContext } from '../../contexts'
 import { CloseCross } from '../../components'
-import { dragStartHandler, dragLeaveHandler,dragEndHandler,dragOverHandler,dragDropHandler } from '../../utils/dndUtils'
+import { dragStartHandler, dragLeaveHandler,dragEndHandler,dragOverHandler,dragDropHandler } from '../../utils'
 import { ITaskProps } from './types'
-import { ITask } from '../../types/tableTypes'
-import { saveTableData } from '../../services/dataService'
+import { ITask } from '../../types'
+import { saveTableData } from '../../services'
 import { observer } from 'mobx-react-lite'
 
 const Task: FC<{options: ITaskProps}> = ({options}) => { 

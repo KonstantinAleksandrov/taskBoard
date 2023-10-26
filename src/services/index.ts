@@ -1,0 +1,1 @@
+export { saveTableData, getTableData  } from './dataService'

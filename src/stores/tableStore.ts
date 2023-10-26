@@ -1,5 +1,5 @@
 import { makeAutoObservable } from "mobx";
-import { IColumn, ITableStore, IDragingState } from "../types/tableTypes"
+import { IColumn, ITableStore, IDragingState } from "../types"
 
 class TableStore implements ITableStore{
     public columns: IColumn[]

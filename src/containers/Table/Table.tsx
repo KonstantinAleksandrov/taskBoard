@@ -2,9 +2,9 @@ import { Column } from '../Column';
 import './style.css'
 import { useState,useEffect,useContext } from 'react'
 import { observer } from 'mobx-react-lite'
-import { IDragingState } from '../../types/tableTypes'
-import { TableContext } from '../../context/tableContext'
-import { getTableData } from '../../services/dataService';
+import { IDragingState } from '../../types'
+import { TableContext } from '../../contexts'
+import { getTableData } from '../../services';
 
 
 //компонент рендерит таблицу

@@ -1,12 +1,12 @@
 import { observer } from "mobx-react-lite"
 import './style.css'
 import { FC, ChangeEvent,useContext } from 'react'
-import { getDate } from "../../utils/dateUtils"
+import { getDate } from "../../utils"
 import { TaskCreatorForm } from "../TaskCreatorForm"
 import { FormOpener } from '../../components'
-import { useTaskCreator } from "../../hooks/useTaskCreator"
-import { TableContext } from "../../context/tableContext"
-import { saveTableData } from "../../services/dataService"
+import { useTaskCreator } from "../../hooks"
+import { TableContext } from "../../contexts"
+import { saveTableData } from "../../services"
 
 
 // добавляет новую задачу в выбранную колонку

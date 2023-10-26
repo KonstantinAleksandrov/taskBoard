@@ -1,4 +1,4 @@
-import tableStore from "../store/tableStore"
+import { tableStore } from "../stores"
 
 export const saveTableData = () => {
     window.localStorage.setItem('columnsList',JSON.stringify(tableStore.columns))
