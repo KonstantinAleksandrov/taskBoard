@@ -1,6 +1,8 @@
 import './style.css'
 import preloaderIcon from '../../images/icons/preloaderIcon.svg'
 
+
+// пока картинка загружается показывается эта заглуша на кнопке добавить
 const Preloader = () => {
     return (
         <div className="preloader">

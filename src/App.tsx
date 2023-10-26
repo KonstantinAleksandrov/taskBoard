@@ -1,5 +1,4 @@
-import Table from './containers/Table/Table';
-import ColumnCreator from './containers/ColumnCreator';
+import { Table, ColumnCreator } from './containers';
 import { TableContext } from './context/tableContext';
 import tableStore from './store/tableStore';
 

@@ -1,6 +1,5 @@
 import { makeAutoObservable } from "mobx";
-import { IColumn,ITableStore } from "../types/columnTypes"
-import { IDragingState } from "../types/taskTypes"
+import { IColumn, ITableStore, IDragingState } from "../types/tableTypes"
 
 class TableStore implements ITableStore{
     public columns: IColumn[]
@@ -98,13 +97,27 @@ class TableStore implements ITableStore{
         }
     }
 
+    renderTableData = (tableData: IColumn[]) => {
+        tableData.forEach((column)=>{
+            if (column.id > this.columnId) {
+                this.columnId = column.id
+            }
 
+            if (column.tasks.length > 0) {
+                column.tasks.forEach((task)=>{
+                    if (task.id > this.taskId) {
+                        this.taskId = task.id
+                    }
+                })
+            }
 
-   /*  saveColumnsInLocalStorage = () => {
-        window.localStorage.setItem('columnsList',JSON.stringify(this.columns))
+            this.columns.push(column)
+        })
+        this.columnId++
+        this.taskId++
     }
 
-    getColumnsOutLocalStorage = () => {
+   /*  getColumnsOutLocalStorage = () => {
         let columnsData = window.localStorage.getItem('columnsList')
         if (columnsData) {
             const columnsList = JSON.parse(columnsData) as IColumn[]
@@ -121,12 +134,7 @@ class TableStore implements ITableStore{
                 this.addColumn(column.title,tasksStore,creatorStore)
             })
         }
-    } */
+    }  */
 }
-
-export const createColumnsStore = () => {
-    return new TableStore()
-}
-
 
 export default new TableStore()

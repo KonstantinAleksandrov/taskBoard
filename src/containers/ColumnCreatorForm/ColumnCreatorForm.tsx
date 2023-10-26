@@ -1,11 +1,10 @@
 import { observer } from "mobx-react-lite"
 import './style.css'
-import CustomTextarea from "../../components/CustomTextarea"
-import AddButton from "../../components/AddButton"
 import { FC } from 'react'
-import CloseCross from "../../components/CloseCross/CloseCross"
+import { AddButton, CloseCross, CustomTextarea } from "../../components"
 import { IColumnCreatorForm } from "./types"
 
+//форма для добавления новой колонки
 const ColumnCreatorForm: FC<{options: IColumnCreatorForm}> = ({options}) => {
     const { value, changeHandler, clickHandler, closeHandler} = options
 

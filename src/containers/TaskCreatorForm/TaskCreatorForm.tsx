@@ -1,13 +1,12 @@
 import { observer } from "mobx-react-lite"
 import './style.css'
-import AddButton from "../../components/AddButton"
-import CloseCross from "../../components/CloseCross/CloseCross"
-import CustomTextarea from "../../components/CustomTextarea"
-import LoadFile from '../LoadFile/LoadFile'
+import { CloseCross, CustomTextarea, Preloader, AddButton } from '../../components'
+import { LoadFile } from '../LoadFile'
 import { FC } from 'react'
-import Preloader from "../../components/Preloader/Preloader"
 import { ITaskCreatorForm } from './types'
 
+
+// форма для добавления новой задачи в колонку
 const TaskCreatorForm: FC<{options: ITaskCreatorForm}> = ({options}) => {
     const 
     { 

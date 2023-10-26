@@ -1,11 +1,11 @@
 import './style.css'
 import { FC } from 'react'
-import ClipIcon from '../../components/ClipIcon'
+import { ClipIcon } from '../../components'
 import { ILoadFileProps } from './types'
 import { inputHandler } from './ustils'
 import { observer } from 'mobx-react-lite'
 
-
+// кнтайнер для загрузки картинки при создании новой задачи
 const LoadFile:FC<ILoadFileProps> = ({ options }) => {
 
     const { clearFileList, changeLoading, tempStorageSave } = options
@@ -24,5 +24,6 @@ const LoadFile:FC<ILoadFileProps> = ({ options }) => {
         </div>
     )
 }
+
 
 export default observer(LoadFile)

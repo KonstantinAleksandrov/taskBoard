@@ -1,6 +1,7 @@
 import React ,{ Dispatch, SetStateAction} from 'react'
-import { ITasksStore, IExtendedTask,IDragingState, ITask } from '../types/taskTypes'
-import tableStore from '../store/tableStore';
+import { IExtendedTask,IDragingState } from '../types/tableTypes'
+import tableStore from '../store/tableStore'
+import { saveTableData } from '../services/dataService'
 
 
 //убираем реакцию на события у дочерних елементов верхнего уровня у всех task
@@ -24,11 +25,9 @@ const changeClassList = (type: 'add' | 'delete') => {
 export const dragStartHandler = (
         setState: Dispatch<SetStateAction<IDragingState>>,
         task: IExtendedTask,
-        columnId: number,
-       /*  tasks: ITask[], */
-        htmlElement: HTMLElement
+        columnId: number
     ) => {
-        setState({...task,columnId, htmlElement})
+        setState({...task,columnId})
         changeClassList('add')    
 }
 
@@ -65,29 +64,24 @@ export const dragOverHandler = (
 //обработчик срабатывает в момент броска захваченного элемента для элемента на который бросили
 export const dragDropHandler = (
         e: React.DragEvent, 
-        draging: IDragingState,
-        task: IExtendedTask,
+        draging: IDragingState, // данные задачи которую тащим
+        task: IExtendedTask,    // данные задачи на которую сбрасываем
         columnId: number
     ) => {
         e.preventDefault()
         const dropElem = e.target as HTMLElement
         const dropTask = dropElem.closest('.task') as HTMLElement
-        changeClassList('delete')
-
         if(dropTask) {
             dropTask.style.opacity = '1'
         }
-
-        console.log('draging',draging)
-        console.log('task',{...task,columnId})
+        
+        changeClassList('delete')
 
         if (draging.columnId === columnId) {
             tableStore.moveTasksWithinColumn(draging.index,task.index,columnId)
         }else {
             tableStore.removeTask(draging.id,draging.columnId)
             tableStore.insertTaskAnywhere(draging,task.index,columnId)
-           /*  draging.removeTask(draging.id)
-            tasksStore.insertTaskAnywhere(draging, task.index) */
         }
-       /*  columnsStore.saveColumnsInLocalStorage() */
+        saveTableData()
 }  

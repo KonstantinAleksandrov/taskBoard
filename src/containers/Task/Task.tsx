@@ -1,26 +1,28 @@
 import './style.css'
 import { FC , useContext} from 'react'
 import { TableContext } from '../../context/tableContext'
-import CloseCross from '../../components/CloseCross/CloseCross'
+import { CloseCross } from '../../components'
 import { dragStartHandler, dragLeaveHandler,dragEndHandler,dragOverHandler,dragDropHandler } from '../../utils/dndUtils'
 import { ITaskProps } from './types'
-import { ITask } from '../../types/taskTypes'
+import { ITask } from '../../types/tableTypes'
+import { saveTableData } from '../../services/dataService'
+import { observer } from 'mobx-react-lite'
 
 const Task: FC<{options: ITaskProps}> = ({options}) => { 
-    const {taskIndex, setdraging, draging, columnId, taskId} = options
+    const {taskIndex, setDraging, draging, columnId, taskId} = options
     const tableContext = useContext(TableContext)
     const task = tableContext.getTask(taskId,columnId) as ITask
 
     const deleteTask = () => {
         tableContext.removeTask(task.id,columnId) 
-       /*  columnsStore.saveColumnsInLocalStorage() */
+        saveTableData()
     }
 
     return (
         <div 
         className="task" 
         draggable={true}
-        onDragStart={(e)=> dragStartHandler(setdraging,  {...task, index: taskIndex }, columnId, e.target as HTMLElement ) }
+        onDragStart={(e)=> dragStartHandler(setDraging,  {...task, index: taskIndex }, columnId) }
         onDragLeave={(e)=> dragLeaveHandler(e)}
         onDragEnd={(e)=> dragEndHandler(e)}
         onDragOver={(e)=> dragOverHandler(e)}
@@ -48,4 +50,4 @@ const Task: FC<{options: ITaskProps}> = ({options}) => {
     )
 }
 
-export default Task
+export default observer(Task)

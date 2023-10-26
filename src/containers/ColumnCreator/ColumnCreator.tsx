@@ -1,11 +1,14 @@
 import { observer } from "mobx-react-lite"
 import './style.css'
-import ColumnCreatorForm from "../ColumnCreatorForm"
-import FormOpener from "../../components/FormOpener"
-import { ChangeEvent, useContext, useEffect } from 'react'
+import { ColumnCreatorForm } from "../ColumnCreatorForm"
+import { FormOpener} from '../../components'
+import { ChangeEvent, useContext } from 'react'
 import { TableContext } from '../../context/tableContext'
 import { useColumnCreator } from "../../hooks/useColumnCreator"
+import { saveTableData } from "../../services/dataService"
 
+
+// контайнер добавляет новую колонку
 const ColumnCreator = () => {
     const tableContext = useContext(TableContext)
     const {creator, openCloseform, changeTitle} = useColumnCreator()
@@ -19,7 +22,7 @@ const ColumnCreator = () => {
         if (creator.columnTitle) {
             tableContext.createNewColumn(creator.columnTitle)
             clearForm()
-            /* columnsStore.saveColumnsInLocalStorage() */
+            saveTableData()
         }
     }
 

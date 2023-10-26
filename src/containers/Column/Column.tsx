@@ -1,17 +1,23 @@
 import './style.css'
-import CloseCross from '../../components/CloseCross/CloseCross'
+import { CloseCross } from '../../components'
+import { TaskCreator } from '../TaskCreator'
+import { Task }  from '../Task'
 import { FC ,useContext } from 'react'
-import TaskCreator from '../TaskCreator/index.'
 import { observer } from 'mobx-react-lite'
-import Task from '../Task/Task'
 import { IColumnProps } from './types'
 import { TableContext } from '../../context/tableContext'
-import { IColumn } from '../../types/columnTypes'
+import { IColumn } from '../../types/tableTypes'
+import { saveTableData } from '../../services/dataService'
 
 
-const Column: FC<IColumnProps> = ({columnId, draging, setdraging}) => {
+const Column: FC<IColumnProps> = ({columnId, draging, setDraging}) => {
     const tableContext = useContext(TableContext)
     const column = tableContext.getColumn(columnId) as IColumn
+
+    const deleteColumn = () => {
+        tableContext.removeColumn(columnId)
+        saveTableData()
+    }
 
     return (
         <div className="column" data-testid='column'>
@@ -19,10 +25,7 @@ const Column: FC<IColumnProps> = ({columnId, draging, setdraging}) => {
             <div className='column__header'>
                 <div className='column__header-title' data-testid='column-title'>{column.title}</div>
                 <CloseCross 
-                closeHandler={() => {
-                    tableContext.removeColumn(columnId)
-                   /*  columnsStore.saveColumnsInLocalStorage() */
-                }}
+                closeHandler={deleteColumn}
                 />
             </div>
 
@@ -36,7 +39,7 @@ const Column: FC<IColumnProps> = ({columnId, draging, setdraging}) => {
                                 taskIndex: index,
                                 columnId,
                                 draging,
-                                setdraging,
+                                setDraging,
                             }
                         }
                         key={task.id} 

@@ -3,7 +3,6 @@ import { observer } from 'mobx-react-lite'
 import { FC } from 'react'
 import { ICustomTextareaProps } from './types'
 
-
 const CustomTextarea: FC<ICustomTextareaProps> = ({options}) => {
     const {placeholder,value,changeHandler} = options
 

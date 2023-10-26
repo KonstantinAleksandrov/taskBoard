@@ -1,20 +1,30 @@
-import Column from '../Column/Column';
+import { Column } from '../Column';
 import './style.css'
 import { useState,useEffect,useContext } from 'react'
 import { observer } from 'mobx-react-lite'
-import { IDragingState } from '../../types/taskTypes'
-import { TableContext } from '../../context/tableContext';
+import { IDragingState } from '../../types/tableTypes'
+import { TableContext } from '../../context/tableContext'
+import { getTableData } from '../../services/dataService';
 
+
+//компонент рендерит таблицу
 const Table = () => {
     const tableContext = useContext(TableContext)
-    const [draging, setdraging] = useState<IDragingState>({} as IDragingState)
+    //состояние для захваченной задачи
+    const [draging, setDraging] = useState<IDragingState>({} as IDragingState)
+
+    //получаем данные таблицы из local storage и если они есть отрисовываем
     useEffect(()=>{
-        /* columnsStore.getColumnsOutLocalStorage() */
+        const tableData = getTableData()
+        if (tableData) {
+            tableContext.renderTableData(tableData)
+        }
     },[])
+    
     return (
         <div className='table'>
             { tableContext.columns.map((column)=>{
-                return <Column key={column.id} columnId={column.id} draging={draging} setdraging={setdraging}/>
+                return <Column key={column.id} columnId={column.id} draging={draging} setDraging={setDraging}/>
             }) }
         </div>
     )
