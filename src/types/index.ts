@@ -1,1 +1,6 @@
-export type { ITask, IColumn, IExtendedTask, IDragingState, ITableStore } from './tableTypes'
+export type { ITableStore } from './ITableStore'
+export type { ITask } from './ITask'
+export type { IColumn } from './IColumn'
+export type { IExtendedTask } from './IExtendedTask'
+export type { IDragingState } from './IDragingState'
+export type { PropsWithOptionalChildren } from './PropsWithOptionalChildren'

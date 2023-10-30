@@ -1,13 +1,13 @@
 import './style.css'
-import { FC, ReactNode } from 'react'
+import { FC } from 'react'
 import { observer } from 'mobx-react-lite'
-import { IAddButton } from './types'
+import { IAddButtonProps } from './IAddButtonProps'
+import { PropsWithOptionalChildren } from '../../types'
 
-
-const AddButton:FC<{options: IAddButton, children?: ReactNode}> = ({options,children}) => {
+const AddButton:FC<PropsWithOptionalChildren<IAddButtonProps>> = ({ clickHandler, children, buttonName }) => {
     return (
-        <div className="addButton" onClick={options.clickHandler}>
-            {options.buttonName}
+        <div className="addButton" onClick={clickHandler}>
+            {buttonName}
             {children}
         </div>
     )

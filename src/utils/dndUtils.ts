@@ -1,7 +1,6 @@
-import React ,{ Dispatch, SetStateAction} from 'react'
-import { IExtendedTask,IDragingState } from '../types'
-import { tableStore } from '../stores'
-import { saveTableData } from '../services'
+import React ,{ Dispatch, SetStateAction } from 'react'
+import { IExtendedTask,IDragingState, ITableStore } from '../types'
+import { dataService } from '../services'
 
 
 //убираем реакцию на события у дочерних елементов верхнего уровня у всех task
@@ -66,7 +65,8 @@ export const dragDropHandler = (
         e: React.DragEvent, 
         draging: IDragingState, // данные задачи которую тащим
         task: IExtendedTask,    // данные задачи на которую сбрасываем
-        columnId: number
+        columnId: number,
+        store: ITableStore
     ) => {
         e.preventDefault()
         const dropElem = e.target as HTMLElement
@@ -78,10 +78,10 @@ export const dragDropHandler = (
         changeClassList('delete')
 
         if (draging.columnId === columnId) {
-            tableStore.moveTasksWithinColumn(draging.index,task.index,columnId)
+            store.moveTasksWithinColumn(draging.index,task.index,columnId)
         }else {
-            tableStore.removeTask(draging.id,draging.columnId)
-            tableStore.insertTaskAnywhere(draging,task.index,columnId)
+            store.removeTask(draging.id,draging.columnId)
+            store.insertTaskAnywhere(draging,task.index,columnId)
         }
-        saveTableData()
+        dataService.saveTableData(store.columns)
 }  

@@ -1,18 +1,17 @@
 import { observer } from "mobx-react-lite"
 import './style.css'
-import { FC, ChangeEvent,useContext } from 'react'
+import { FC, ChangeEvent } from 'react'
 import { getDate } from "../../utils"
 import { TaskCreatorForm } from "../TaskCreatorForm"
 import { FormOpener } from '../../components'
-import { useTaskCreator } from "../../hooks"
-import { TableContext } from "../../contexts"
-import { saveTableData } from "../../services"
+import { useTaskCreator, useTableStore } from "../../hooks"
+import { dataService } from "../../services"
 
 
 // добавляет новую задачу в выбранную колонку
 const TaskCreator: FC<{columnId: number}> = ({columnId}) => {
     const { creator, openCloseform, changeTitle, addFile, clearFileList, changeLoading } = useTaskCreator()
-    const tableContext = useContext(TableContext)
+    const tableStore = useTableStore()
 
     const clearForm = () => {
         changeTitle('') 
@@ -22,9 +21,9 @@ const TaskCreator: FC<{columnId: number}> = ({columnId}) => {
 
     const addNewTask = () => {
         if (creator.taskTitle) {
-            tableContext.addTask(creator.taskTitle, getDate(), creator.fileList,columnId)
+            tableStore.addTask(creator.taskTitle, getDate(), creator.fileList,columnId)
             clearForm()
-            saveTableData()
+            dataService.saveTableData(tableStore.columns)
         }
     }
 
@@ -50,12 +49,7 @@ const TaskCreator: FC<{columnId: number}> = ({columnId}) => {
                     columnId: columnId 
                 }}
               />
-            : <FormOpener 
-                options={{
-                    title: '+ Add new task',
-                    toggleHandler: openCloseform
-                }}
-              />
+            : <FormOpener title='+ Add new task' toggleHandler={openCloseform}/>
             }
         </div>
     )

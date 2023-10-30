@@ -1,4 +1,4 @@
 import { createContext } from "react";
-import { tableStore } from "../stores";
+import { ITableStore } from '../types/ITableStore';
 
-export const TableContext = createContext({} as typeof tableStore)
+export const TableContext = createContext({} as ITableStore)

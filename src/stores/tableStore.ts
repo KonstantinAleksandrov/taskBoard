@@ -87,7 +87,7 @@ class TableStore implements ITableStore{
     }
 
     //логика добавления задачи из другой колонки в эту колонку на полученную позицию
-    insertTaskAnywhere = (task: IDragingState ,dropIndex: number, dropColumnId: number ) => {
+    insertTaskAnywhere = (task: IDragingState, dropIndex: number, dropColumnId: number ) => {
         const currentColumn = this.getColumn(dropColumnId)
 
         if (currentColumn) {
@@ -119,4 +119,4 @@ class TableStore implements ITableStore{
     
 }
 
-export default new TableStore()
+export default TableStore

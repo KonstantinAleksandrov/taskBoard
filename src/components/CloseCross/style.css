@@ -1,22 +1,27 @@
 .closeCross{
-    flex: 0 0 30px;
-    height: 30px;
-    position: relative;
-    cursor: pointer;
+  flex: 0 0 30px;
+  height: 30px;
+  position: relative;
+  cursor: pointer;
 }
-.closeCross:hover span{
-  background-color: rgb(30, 60, 77);
+
+.closeCross::before,
+.closeCross::after {
+  content: '';
+  transition: all 0.3s ease 0s;
+  width: 16px;
+  height: 2px;
+  background-color:rgb(121, 140, 151);
+  position: absolute;
+  left: 7px;
+  top: 13px;
+  transform: rotate(-45deg);
 }
-.closeCross span{
-    transition: all 0.3s ease 0s;
-    width: 16px;
-    height: 2px;
-    background-color:rgb(121, 140, 151);
-    position: absolute;
-    left: 7px;
-    top: 13px;
-    transform: rotate(-45deg);
-}
-.closeCross span:last-child{
+.closeCross::after {
   transform: rotate(45deg);
+}
+
+.closeCross:hover::after,
+.closeCross:hover::before {
+  background-color: rgb(30, 60, 77);
 }

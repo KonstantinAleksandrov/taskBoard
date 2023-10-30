@@ -1,12 +1,25 @@
-import { tableStore } from "../stores"
+class DataService {
 
-export const saveTableData = () => {
-    window.localStorage.setItem('columnsList',JSON.stringify(tableStore.columns))
-}
+    constructor() {}
 
-export const getTableData = () => {
-    let columnsData = window.localStorage.getItem('columnsList')
-    if (columnsData) {
-        return JSON.parse(columnsData)
+    saveTableData = async <T>(columns: T) => {
+        window.localStorage.setItem('columnsList',JSON.stringify(columns))
+    }
+
+    getTableData = <T>(): Promise<T> => {
+        return new Promise((resolve, reject)=>{
+            /* setTimeout(()=>{ */
+                let columnsData = window.localStorage.getItem('columnsList')
+
+                if (columnsData) {
+                    resolve(JSON.parse(columnsData))
+                }else {
+                    reject()
+                }
+
+          /*   },2000) */
+        })
     }
 }
+
+export const dataService = new DataService()

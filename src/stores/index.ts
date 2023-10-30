@@ -1,1 +1,1 @@
-export { default as tableStore } from './tableStore'
+export { default as TableStore } from './tableStore'

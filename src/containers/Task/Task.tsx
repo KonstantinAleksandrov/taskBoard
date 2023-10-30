@@ -1,21 +1,21 @@
 import './style.css'
-import { FC , useContext} from 'react'
-import { TableContext } from '../../contexts'
+import { FC } from 'react'
 import { CloseCross } from '../../components'
 import { dragStartHandler, dragLeaveHandler,dragEndHandler,dragOverHandler,dragDropHandler } from '../../utils'
-import { ITaskProps } from './types'
+import { ITaskProps } from './ITaskProps'
 import { ITask } from '../../types'
-import { saveTableData } from '../../services'
+import { dataService } from '../../services'
 import { observer } from 'mobx-react-lite'
+import { useTableStore } from '../../hooks'
 
 const Task: FC<{options: ITaskProps}> = ({options}) => { 
     const {taskIndex, setDraging, draging, columnId, taskId} = options
-    const tableContext = useContext(TableContext)
-    const task = tableContext.getTask(taskId,columnId) as ITask
+    const tableStore = useTableStore()
+    const task = tableStore.getTask(taskId,columnId) as ITask
 
     const deleteTask = () => {
-        tableContext.removeTask(task.id,columnId) 
-        saveTableData()
+        tableStore.removeTask(task.id,columnId) 
+        dataService.saveTableData(tableStore.columns)
     }
 
     return (
@@ -26,7 +26,7 @@ const Task: FC<{options: ITaskProps}> = ({options}) => {
         onDragLeave={(e)=> dragLeaveHandler(e)}
         onDragEnd={(e)=> dragEndHandler(e)}
         onDragOver={(e)=> dragOverHandler(e)}
-        onDrop={(e)=> dragDropHandler(e, draging, {...task, index: taskIndex},columnId)}
+        onDrop={(e)=> dragDropHandler(e, draging, {...task, index: taskIndex},columnId,tableStore)}
         >
             <div className='task__header'>
                 <div className='task__header-title'>{task.title}</div>

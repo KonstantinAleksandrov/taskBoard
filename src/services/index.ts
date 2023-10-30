@@ -1,1 +1,1 @@
-export { saveTableData, getTableData  } from './dataService'
+export {dataService } from './dataService'

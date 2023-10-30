@@ -7,8 +7,6 @@ const CloseCross: FC<{closeHandler: () => void}> = ({closeHandler}) => {
         data-testid='close-cross'
         className="closeCross" 
         onClick={closeHandler}>
-            <span></span>
-            <span></span>
         </div>
     )
 }

@@ -1,4 +1,4 @@
-.preloader {
+.loader {
     position: absolute;
     top: 0;
     left: 0;
@@ -10,14 +10,14 @@
     background-color: rgba(222, 226, 229, 0.8);
 }
 
-.preloader__img {
+.loader__img {
     width: 24px;
     height: 24px;
     overflow: hidden;
     animation: rotate 3s linear 0s infinite;
 }
 
-.preloader__img img{
+.loader__img img{
     width: 100%;
     height: 100%;
     object-fit: contain;

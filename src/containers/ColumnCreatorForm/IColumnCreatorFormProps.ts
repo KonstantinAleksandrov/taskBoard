@@ -1,6 +1,6 @@
 import { ChangeEvent } from "react"
 
-export interface IColumnCreatorForm{
+export interface IColumnCreatorFormProps{
     changeHandler: (e: ChangeEvent) => void,
     clickHandler: () => void,
     value: string,

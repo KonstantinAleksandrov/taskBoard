@@ -1,10 +1,9 @@
 import './style.css'
 import { observer } from 'mobx-react-lite'
 import { FC } from 'react'
-import { ICustomTextareaProps } from './types'
+import { ICustomTextareaProps } from './ICustomTextareaProps'
 
-const CustomTextarea: FC<ICustomTextareaProps> = ({options}) => {
-    const {placeholder,value,changeHandler} = options
+const CustomTextarea: FC<ICustomTextareaProps> = ({placeholder, value, changeHandler}) => {
 
     return (
         <textarea 

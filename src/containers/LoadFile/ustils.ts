@@ -1,4 +1,4 @@
-import { clearFileList, changeLoading,tempStorageSave} from './types'
+import { clearFileList, changeLoading,tempStorageSave} from './ILoadFileProps'
 
 
 //ждем загрузки картинки и сохраняем во временное хранилище

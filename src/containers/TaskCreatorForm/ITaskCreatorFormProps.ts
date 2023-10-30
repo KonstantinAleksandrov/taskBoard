@@ -1,6 +1,6 @@
 import { ChangeEvent } from "react"
 
-export interface ITaskCreatorForm{
+export interface ITaskCreatorFormProps{
     changeHandler: (e: ChangeEvent) => void,
     clickHandler: () => void,
     value: string,

@@ -2,21 +2,21 @@ import './style.css'
 import { CloseCross } from '../../components'
 import { TaskCreator } from '../TaskCreator'
 import { Task }  from '../Task'
-import { FC ,useContext } from 'react'
+import { FC } from 'react'
 import { observer } from 'mobx-react-lite'
-import { IColumnProps } from './types'
-import { TableContext } from '../../contexts'
+import { IColumnProps } from './IColumnProps'
 import { IColumn } from '../../types'
-import { saveTableData } from '../../services'
+import { dataService } from '../../services'
+import { useTableStore } from '../../hooks'
 
 
 const Column: FC<IColumnProps> = ({columnId, draging, setDraging}) => {
-    const tableContext = useContext(TableContext)
-    const column = tableContext.getColumn(columnId) as IColumn
+    const tableStore = useTableStore()
+    const column = tableStore.getColumn(columnId) as IColumn
 
     const deleteColumn = () => {
-        tableContext.removeColumn(columnId)
-        saveTableData()
+        tableStore.removeColumn(columnId)
+        dataService.saveTableData(tableStore.columns)
     }
 
     return (
