@@ -103,7 +103,7 @@ class TableStore implements ITableStore{
                 this.columnId = column.id
             }
 
-            if (column.tasks && column.tasks.length > 0) {
+            if (column.tasks.length > 0) {
                 column.tasks.forEach((task)=>{
                     if (task.id > this.taskId) {
                         this.taskId = task.id
