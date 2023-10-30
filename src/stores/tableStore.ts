@@ -103,7 +103,7 @@ class TableStore implements ITableStore{
                 this.columnId = column.id
             }
 
-            if (column.tasks.length > 0) {
+            if (column.tasks && column.tasks.length > 0) {
                 column.tasks.forEach((task)=>{
                     if (task.id > this.taskId) {
                         this.taskId = task.id
@@ -116,25 +116,7 @@ class TableStore implements ITableStore{
         this.columnId++
         this.taskId++
     }
-
-   /*  getColumnsOutLocalStorage = () => {
-        let columnsData = window.localStorage.getItem('columnsList')
-        if (columnsData) {
-            const columnsList = JSON.parse(columnsData) as IColumn[]
-
-            columnsList.forEach((column)=>{
-
-                const tasksStore = createTasksStore(this.currentId)
-                const creatorStore = createCreatorStore()
-
-                column.tasksStore.tasks.forEach((task)=>{
-                    tasksStore.addTask(task.title,task.dateCreate,task.taskFileList)
-                })
-
-                this.addColumn(column.title,tasksStore,creatorStore)
-            })
-        }
-    }  */
+    
 }
 
 export default new TableStore()
