@@ -1,7 +1,7 @@
 import { observer } from "mobx-react-lite"
 import './style.css'
 import { ColumnCreatorForm } from "../ColumnCreatorForm"
-import { FormOpener} from '../../components'
+import { FormOpenerButton} from '../../components'
 import { ChangeEvent } from 'react'
 import { useColumnCreator, useTableStore } from "../../hooks"
 import { dataService } from "../../services"
@@ -41,7 +41,7 @@ const ColumnCreator = () => {
                     closeHandler: clearForm
                 }}
               />
-            : <FormOpener title='+ Add new column' toggleHandler={openCloseform}/>
+            : <FormOpenerButton title='+ Add new column' toggleHandler={openCloseform}/>
             }
         </div>
     )

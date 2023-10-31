@@ -1,6 +1,6 @@
 import { observer } from "mobx-react-lite"
 import './style.css'
-import { CloseCross, CustomTextarea, Loader, AddButton } from '../../components'
+import { CloseCrossButton, CustomTextarea, Loader, AddButton } from '../../components'
 import { LoadFile } from '../LoadFile'
 import { FC } from 'react'
 import { ITaskCreatorFormProps } from './ITaskCreatorFormProps'
@@ -44,7 +44,7 @@ const TaskCreatorForm: FC<{options: ITaskCreatorFormProps}> = ({options}) => {
                 </AddButton>
                 <div className="taskCreatorForm__buttons-rightColumn">
                     <LoadFile options={{tempStorageSave: tempStorageSave, changeLoading, clearFileList, columnId}}/>
-                    <CloseCross closeHandler={closeHandler}/>
+                    <CloseCrossButton closeHandler={closeHandler}/>
                 </div>
             </div>
         </div>

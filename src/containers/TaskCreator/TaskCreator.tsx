@@ -3,7 +3,7 @@ import './style.css'
 import { FC, ChangeEvent } from 'react'
 import { getDate } from "../../utils"
 import { TaskCreatorForm } from "../TaskCreatorForm"
-import { FormOpener } from '../../components'
+import { FormOpenerButton } from '../../components'
 import { useTaskCreator, useTableStore } from "../../hooks"
 import { dataService } from "../../services"
 
@@ -49,7 +49,7 @@ const TaskCreator: FC<{columnId: number}> = ({columnId}) => {
                     columnId: columnId 
                 }}
               />
-            : <FormOpener title='+ Add new task' toggleHandler={openCloseform}/>
+            : <FormOpenerButton title='+ Add new task' toggleHandler={openCloseform}/>
             }
         </div>
     )

@@ -1,6 +1,6 @@
 import './style.css'
 import { FC } from 'react'
-import { CloseCross } from '../../components'
+import { CloseCrossButton } from '../../components'
 import { dragStartHandler, dragLeaveHandler,dragEndHandler,dragOverHandler,dragDropHandler } from '../../utils'
 import { ITaskProps } from './ITaskProps'
 import { ITask } from '../../types'
@@ -30,7 +30,7 @@ const Task: FC<{options: ITaskProps}> = ({options}) => {
         >
             <div className='task__header'>
                 <div className='task__header-title'>{task.title}</div>
-                <CloseCross closeHandler={deleteTask}/>
+                <CloseCrossButton closeHandler={deleteTask}/>
             </div>
             <div className='task__body'>
                 <div className='task__body-images task__images'>

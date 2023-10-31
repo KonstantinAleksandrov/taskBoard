@@ -1,5 +1,5 @@
 import './style.css'
-import { CloseCross } from '../../components'
+import { CloseCrossButton } from '../../components'
 import { TaskCreator } from '../TaskCreator'
 import { Task }  from '../Task'
 import { FC } from 'react'
@@ -24,7 +24,7 @@ const Column: FC<IColumnProps> = ({columnId, draging, setDraging}) => {
 
             <div className='column__header'>
                 <div className='column__header-title' data-testid='column-title'>{column.title}</div>
-                <CloseCross 
+                <CloseCrossButton 
                 closeHandler={deleteColumn}
                 />
             </div>

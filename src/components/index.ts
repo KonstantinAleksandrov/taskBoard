@@ -1,9 +1,9 @@
 import { AddButton } from "./AddButton";
 import { ClipIcon } from "./ClipIcon";
-import { CloseCross } from "./CloseCross";
+import { CloseCrossButton } from "./CloseCrossButton";
 import { CustomTextarea } from "./CustomTextarea";
-import { FormOpener } from "./FormOpener";
+import { FormOpenerButton } from "./FormOpenerButton";
 import { Loader } from "./Loader";
 import { TableStoreProvider } from "./TableStoreProvider";
 
-export { AddButton, ClipIcon, CloseCross, CustomTextarea, FormOpener, Loader, TableStoreProvider}
+export { AddButton, ClipIcon, CloseCrossButton, CustomTextarea, FormOpenerButton, Loader, TableStoreProvider}

@@ -1,7 +1,7 @@
 import { observer } from "mobx-react-lite"
 import './style.css'
 import { FC } from 'react'
-import { AddButton, CloseCross, CustomTextarea } from "../../components"
+import { AddButton, CloseCrossButton, CustomTextarea } from "../../components"
 import { IColumnCreatorFormProps } from "./IColumnCreatorFormProps"
 
 //форма для добавления новой колонки
@@ -17,7 +17,7 @@ const ColumnCreatorForm: FC<{options: IColumnCreatorFormProps}> = ({options}) =>
             />
             <div className="columnCreatorForm__buttons">
                 <AddButton  clickHandler={clickHandler} buttonName='Add column'/>
-                <CloseCross closeHandler={closeHandler}/>
+                <CloseCrossButton closeHandler={closeHandler}/>
             </div>
         </div>
     )

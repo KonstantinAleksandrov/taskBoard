@@ -15,10 +15,10 @@ describe('test App',()=>{
     test('клик на крестик в форме должен закрывать форму',()=> {
         render(<App />);
         fireEvent.click(screen.getByTestId('openFormButton'))
-        const closeCross = screen.getByTestId('close-cross')
-        expect(closeCross).toBeInTheDocument()
+        const CloseCrossButton = screen.getByTestId('close-cross')
+        expect(CloseCrossButton).toBeInTheDocument()
 
-        fireEvent.click(closeCross)
+        fireEvent.click(CloseCrossButton)
         expect(screen.queryByTestId('add-form')).toBeNull()
         expect(screen.getByTestId('openFormButton') ).toBeInTheDocument()
     })

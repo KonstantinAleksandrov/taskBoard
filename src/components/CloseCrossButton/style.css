@@ -1,12 +1,12 @@
-.closeCross{
+.closeCrossButton{
   flex: 0 0 30px;
   height: 30px;
   position: relative;
   cursor: pointer;
 }
 
-.closeCross::before,
-.closeCross::after {
+.closeCrossButton::before,
+.closeCrossButton::after {
   content: '';
   transition: all 0.3s ease 0s;
   width: 16px;
@@ -17,11 +17,11 @@
   top: 13px;
   transform: rotate(-45deg);
 }
-.closeCross::after {
+.closeCrossButton::after {
   transform: rotate(45deg);
 }
 
-.closeCross:hover::after,
-.closeCross:hover::before {
+.closeCrossButton:hover::after,
+.closeCrossButton:hover::before {
   background-color: rgb(30, 60, 77);
 }
